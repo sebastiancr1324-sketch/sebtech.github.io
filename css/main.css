@@ -259,6 +259,9 @@ h1, h2, h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   * {
     animation: none !important;
     transition: none !important;
@@ -740,20 +743,28 @@ h1, h2, h3 {
   z-index: 5;
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem;
+  padding: calc(1rem - 7px) 1rem;
 }
 
 .carrusel__dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.carrusel__dot::before {
+  content: "";
   width: 10px;
   height: 10px;
   border-radius: 50%;
   border: 1px solid #7ce8ff;
-  background: transparent;
-  cursor: pointer;
   transition: background 0.2s ease;
 }
-.carrusel__dot.is-active {
+.carrusel__dot.is-active::before {
   background: #7ce8ff;
 }
 

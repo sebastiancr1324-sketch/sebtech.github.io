@@ -155,6 +155,9 @@
   <script src="js/vendor/aos.js"></script>
   <script src="js/aos-config.js"></script>
   <script>
+    // Si el visitante pidió "reducir movimiento", las partículas quedan quietas
+    // y el carrusel no avanza solo.
+    var reducirMovimiento = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     var particulasIniciadas = false;
     function iniciarParticulas() {
       if (particulasIniciadas || typeof particlesJS === 'undefined') return;
@@ -173,7 +176,9 @@
             "opacity": 0.3,
             "width": 1
           },
-          "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "out_mode": "out" }
+          // Con "reducir movimiento" la velocidad es 0 y el ciclo de dibujo se corta
+          // después del primer cuadro (desactivar move da error en particles.js 2.0)
+          "move": { "enable": true, "speed": reducirMovimiento ? 0 : 2, "direction": "none", "random": true, "out_mode": "out" }
         },
         "interactivity": {
           "detect_on": "canvas",
@@ -183,20 +188,56 @@
             "push": { "particles_nb": 3 }
           }
         },
-        "retina_detect": true
+        // Sin retina: en celulares el lienzo se dibuja a 1x en lugar de 3x
+        "retina_detect": false
       });
       window.setTimeout(function() {
         if (window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS) {
           var pJS = window.pJSDom[0].pJS;
           if (pJS.fn && pJS.fn.vendors && pJS.fn.vendors.densityAutoParticles) pJS.fn.vendors.densityAutoParticles();
           if (pJS.fn && pJS.fn.canvasSize) pJS.fn.canvasSize();
+          if (reducirMovimiento) dejarParticulasQuietas(pJS);
         }
       }, 100);
+      if (!reducirMovimiento) pausarParticulasFueraDePantalla();
+    }
+
+    // Dibuja un solo cuadro y corta el ciclo; al cambiar el tamaño de la
+    // ventana se vuelve a dibujar una vez, porque el lienzo se borra.
+    function dejarParticulasQuietas(pJS) {
+      cancelAnimationFrame(pJS.fn.drawAnimFrame);
+      pJS.fn.particlesDraw();
+      window.addEventListener('resize', function() {
+        setTimeout(function() {
+          cancelAnimationFrame(pJS.fn.drawAnimFrame);
+          pJS.fn.particlesDraw();
+        }, 50);
+      });
+    }
+
+    // particles.js redibuja 60 veces por segundo aunque no se vea: se corta
+    // el ciclo cuando el carrusel sale de pantalla y se retoma al volver.
+    function pausarParticulasFueraDePantalla() {
+      var contenedor = document.getElementById('particles-js');
+      if (!contenedor || !('IntersectionObserver' in window)) return;
+      var animando = true;
+      new IntersectionObserver(function(entradas) {
+        var pJS = window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS;
+        if (!pJS) return;
+        if (entradas[0].isIntersecting && !animando) {
+          animando = true;
+          pJS.fn.vendors.draw();
+        } else if (!entradas[0].isIntersecting && animando) {
+          animando = false;
+          cancelAnimationFrame(pJS.fn.drawAnimFrame);
+        }
+      }).observe(contenedor);
     }
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      iniciarParticulas();
+      // Las partículas son decorativas: si fallan, el carrusel tiene que funcionar igual
+      try { iniciarParticulas(); } catch (e) {}
       var track = document.getElementById('carrusel-track');
       var dots = document.getElementById('carrusel-dots');
       if (!track) return;
@@ -253,9 +294,32 @@
         })(dotsEl[d]);
       }
 
+      // El avance automático se frena con el mouse encima, con el foco dentro
+      // del carrusel (teclado), fuera de pantalla y con "reducir movimiento".
+      var carrusel = document.getElementById('carrusel');
+      var conMouse = false;
+      var conFoco = false;
+      var enPantalla = true;
+
       function reiniciar() {
         clearInterval(intervalo);
+        if (reducirMovimiento || conMouse || conFoco || !enPantalla) return;
         intervalo = setInterval(siguiente, 4000);
+      }
+
+      carrusel.addEventListener('mouseenter', function() { conMouse = true; reiniciar(); });
+      carrusel.addEventListener('mouseleave', function() { conMouse = false; reiniciar(); });
+      carrusel.addEventListener('focusin', function() { conFoco = true; reiniciar(); });
+      carrusel.addEventListener('focusout', function(e) {
+        if (carrusel.contains(e.relatedTarget)) return;
+        conFoco = false;
+        reiniciar();
+      });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function(entradas) {
+          enPantalla = entradas[0].isIntersecting;
+          reiniciar();
+        }).observe(carrusel);
       }
 
       if (slidesEl.length > 0) {

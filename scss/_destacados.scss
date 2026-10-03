@@ -129,20 +129,33 @@
   z-index: 5;
   display: flex;
   justify-content: center;
-  gap: $space-xs;
-  padding: $space-sm;
+  // Botones de 24 px: el padding vertical baja 7 px de cada lado para que
+  // la franja de puntos mantenga el mismo alto que antes (42 px)
+  padding: calc(#{$space-sm} - 7px) $space-sm;
 }
 
+// Área para tocar de 24×24 px (mínimo WCAG 2.5.8); el punto visible sigue
+// siendo de 10 px
 .carrusel__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid $brillo;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
   background: transparent;
   cursor: pointer;
-  transition: background 0.2s ease;
+  display: grid;
+  place-items: center;
 
-  &.is-active {
+  &::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid $brillo;
+    transition: background 0.2s ease;
+  }
+
+  &.is-active::before {
     background: $brillo;
   }
 }

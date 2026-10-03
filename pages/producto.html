@@ -260,8 +260,8 @@
       if (images.length > 1) {
         thumbsHtml = '<div class="producto-detail__thumbs">';
         for (var t = 0; t < images.length; t++) {
-          thumbsHtml += '<button type="button" class="producto-detail__thumb" data-img="' + images[t] + '" aria-label="Ver imagen ' + (t+1) + '">' +
-            '<img src="' + images[t] + '" alt="' + producto.nombre + ' imagen ' + (t+1) + '">' +
+          thumbsHtml += '<button type="button" class="producto-detail__thumb" data-img="' + images[t] + '" aria-label="Ver imagen ' + (t+1) + '" aria-pressed="false">' +
+            '<img src="' + images[t] + '" alt="" loading="lazy" decoding="async">' +
           '</button>';
         }
         thumbsHtml += '</div>';
@@ -313,7 +313,9 @@
         '</nav>' +
         '<div class="producto-detail__grid">' +
           '<div class="producto-detail__gallery">' +
-            '<img src="' + imgPrincipal + '" alt="' + producto.nombre + '" class="producto-detail__img" id="producto-img-principal" fetchpriority="high">' +
+            '<div class="producto-detail__media">' +
+              '<img src="' + imgPrincipal + '" alt="' + producto.nombre + '" class="producto-detail__img" id="producto-img-principal" fetchpriority="high">' +
+            '</div>' +
             thumbsHtml +
           '</div>' +
           '<div class="producto-detail__info">' +
@@ -345,14 +347,19 @@
           btn.addEventListener('click', function() {
             imgPrincipalEl.src = btn.getAttribute('data-img');
             var activos = document.querySelectorAll('.producto-detail__thumb.is-active');
-            for (var a = 0; a < activos.length; a++) { activos[a].classList.remove('is-active'); }
+            for (var a = 0; a < activos.length; a++) {
+              activos[a].classList.remove('is-active');
+              activos[a].setAttribute('aria-pressed', 'false');
+            }
             btn.classList.add('is-active');
+            btn.setAttribute('aria-pressed', 'true');
           });
         })(thumbs[th]);
       }
 
       if (thumbs.length > 0) {
         thumbs[0].classList.add('is-active');
+        thumbs[0].setAttribute('aria-pressed', 'true');
       }
 
       var urlCompleta = urlFicha(producto.id);

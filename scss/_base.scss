@@ -13,7 +13,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -21,7 +21,9 @@ body {
   color: $texto1;
   font-family: $font-body;
   line-height: 1.6;
-  overflow-x: hidden;
+  // clip (y no hidden) recorta el desborde horizontal sin crear un contenedor
+  // de scroll; con hidden el header dejaba de funcionar como sticky
+  overflow-x: clip;
   width: 100%;
 }
 

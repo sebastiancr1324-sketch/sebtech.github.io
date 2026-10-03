@@ -13,6 +13,7 @@
   <meta property="og:image" content="../img/apple-touch-icon.png">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/vendor/aos.css">
+  <noscript><style>[data-requiere-js] { display: none; }</style></noscript>
 </head>
 <body>
 
@@ -34,7 +35,10 @@
 
   <main>
     <div class="producto-detail" id="producto-contenido">
-      <p class="producto-detail__loading">Cargando producto...</p>
+      <p class="producto-detail__loading" data-requiere-js>Cargando producto...</p>
+      <noscript>
+        <p class="aviso-sin-js">Para ver este producto necesitás tener JavaScript activado en tu navegador. También podés consultarnos por <a href="https://wa.me/message/NDPQOF3UHLIQF1" target="_blank" rel="noopener">WhatsApp</a>.</p>
+      </noscript>
     </div>
 
     <section class="relacionados" id="producto-relacionados" aria-labelledby="relacionados-title" hidden>
@@ -89,7 +93,9 @@
   <script src="../js/main.js"></script>
   <script src="../js/cookies.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    // Se ejecuta apenas se lee (el contenedor ya existe más arriba), sin esperar
+    // a DOMContentLoaded, para que el producto aparezca en el primer pintado.
+    (function() {
       var params = new URLSearchParams(window.location.search);
       var id = params.get('id');
       var contenedor = document.getElementById('producto-contenido');
@@ -273,7 +279,7 @@
           seccionRelacionados.hidden = false;
         }
       }
-    });
+    })();
   </script>
 
   <script src="../js/vendor/aos.js"></script>

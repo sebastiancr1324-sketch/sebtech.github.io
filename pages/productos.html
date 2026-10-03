@@ -40,7 +40,10 @@
       <h1 class="pagina-header__title">Nuestros productos</h1>
     </div>
 
-    <div id="catalogo-container"></div>
+    <div id="catalogo-container" data-requiere-js></div>
+    <noscript>
+      <p class="aviso-sin-js">Para ver el catálogo necesitás tener JavaScript activado en tu navegador. También podés consultarnos por <a href="https://wa.me/message/NDPQOF3UHLIQF1" target="_blank" rel="noopener">WhatsApp</a>.</p>
+    </noscript>
   </main>
 
   <footer class="footer">
@@ -87,7 +90,9 @@
   <script src="../js/main.js"></script>
   <script src="../js/cookies.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    // Se ejecuta apenas se lee (el contenedor ya existe más arriba), sin esperar
+    // a DOMContentLoaded, para que el catálogo aparezca en el primer pintado.
+    (function() {
       var container = document.getElementById("catalogo-container");
 
       var productosConStock = productos.filter(function(p) {
@@ -171,7 +176,7 @@
       }
 
       container.innerHTML = html;
-    });
+    })();
   </script>
 
   <script src="../js/vendor/aos.js"></script>

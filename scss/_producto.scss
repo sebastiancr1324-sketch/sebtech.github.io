@@ -233,6 +233,11 @@
     }
   }
 
+  // Reserva una pantalla de alto mientras carga, para que el footer no salte
+  &__loading {
+    min-height: 100vh;
+  }
+
   &__loading,
   &__error {
     text-align: center;

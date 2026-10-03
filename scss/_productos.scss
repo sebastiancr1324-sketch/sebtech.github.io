@@ -19,6 +19,12 @@
   }
 }
  
+// Mientras JavaScript arma el catálogo, el contenedor reserva una pantalla
+// de alto: así el footer no aparece arriba y después salta hacia abajo.
+#catalogo-container:empty {
+  min-height: 100vh;
+}
+
 .categoria-seccion {
   @extend %container;
   padding-block: $space-md;

@@ -20,6 +20,7 @@
 
   <!-- AOS (Animate On Scroll) -->
   <link rel="stylesheet" href="css/vendor/aos.css">
+  <noscript><style>[data-requiere-js] { display: none; }</style></noscript>
 </head>
 <body>
 
@@ -63,10 +64,13 @@
       <h2 class="destacados__title" id="destacados-title">Lo que más nos piden</h2>
       <div class="carrusel" id="carrusel">
         <div id="particles-js"></div>
-        <button type="button" class="carrusel__nav carrusel__nav--prev" aria-label="Anterior">‹</button>
-        <button type="button" class="carrusel__nav carrusel__nav--next" aria-label="Siguiente">›</button>
+        <button type="button" class="carrusel__nav carrusel__nav--prev" aria-label="Anterior" data-requiere-js>‹</button>
+        <button type="button" class="carrusel__nav carrusel__nav--next" aria-label="Siguiente" data-requiere-js>›</button>
         <div class="carrusel__viewport">
-          <div class="carrusel__track" id="carrusel-track"></div>
+          <div class="carrusel__track" id="carrusel-track" data-requiere-js></div>
+          <noscript>
+            <p class="aviso-sin-js">Para ver los productos destacados necesitás tener JavaScript activado en tu navegador.</p>
+          </noscript>
         </div>
         <div class="carrusel__dots" id="carrusel-dots"></div>
       </div>

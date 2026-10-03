@@ -87,6 +87,24 @@ h1, h2, h3 {
   }
 }
 
+// Aviso que se muestra dentro de <noscript> cuando el contenido depende de JavaScript
+.aviso-sin-js {
+  max-width: 60ch;
+  margin-inline: auto;
+  padding: $space-lg $space-sm;
+  text-align: center;
+  color: $texto2;
+
+  a {
+    color: $acento;
+    text-decoration: underline;
+  }
+
+  .carrusel & {
+    color: $tcuadros1;
+  }
+}
+
 // Respeta usuarios con "reducir movimiento" activado
 @media (prefers-reduced-motion: reduce) {
   * {

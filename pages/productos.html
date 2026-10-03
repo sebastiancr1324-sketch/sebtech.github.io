@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Productos | SebTech</title>
     <meta name="description" content="Explora nuestro catálogo de productos: celulares, tablets y accesorios de calidad. Envios a todo CABA">
-    <link rel="icon" type="image/png" href="../img/LogoSebtechMinimalita.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="../img/favicon.png">
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
     <meta property="og:title" content="Catálogo de Productos | SebTech">
     <meta property="og:description" content="Explora nuestro catálogo de productos: celulares, tablets y accesorios de calidad. Envios a todo CABA">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="../img/LogoSebtechMinimalita.png">
+    <meta property="og:image" content="../img/apple-touch-icon.png">
     <link rel="stylesheet" href="../css/main.css">
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
@@ -22,7 +23,7 @@
 <body>
     <header class="header">
     <div class="header__inner">
-      <a href="../index.html" class="header__logo"><img src="../img/LogoSebtechMinimalita.png" alt="Logo SebTech" class="header__logo-img"><span>Seb<span class="header__logo-accent">Tech</span></span></a>
+      <a href="../index.html" class="header__logo"><img src="../img/LogoSebtechMinimalita.webp" alt="Logo SebTech" class="header__logo-img" width="32" height="32"><span>Seb<span class="header__logo-accent">Tech</span></span></a>
 
       <button class="header__toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
 
@@ -131,7 +132,7 @@
           var prod = productosCat[p];
           html += '<a href="producto.html?id=' + prod.id + '" class="card-producto">';
           html += '<div class="card-producto__media">';
-          html += '<img src="' + obtenerImagenPrincipal(prod) + '" alt="' + prod.nombre + '">';
+          html += '<img src="' + obtenerImagenPrincipal(prod) + '" alt="' + prod.nombre + '" loading="lazy" decoding="async">';
           html += '</div>';
           html += '<div class="card-producto__body">';
           html += '<h3 class="card-producto__title">' + prod.nombre + '</h3>';
@@ -157,7 +158,7 @@
           var prod = productosSinStock[p];
           html += '<a href="producto.html?id=' + prod.id + '" class="card-producto sin-stock">';
           html += '<div class="card-producto__media">';
-          html += '<img src="' + obtenerImagenPrincipal(prod) + '" alt="' + prod.nombre + '">';
+          html += '<img src="' + obtenerImagenPrincipal(prod) + '" alt="' + prod.nombre + '" loading="lazy" decoding="async">';
           html += '</div>';
           html += '<div class="card-producto__body">';
           html += '<h3 class="card-producto__title">' + prod.nombre + '</h3>';

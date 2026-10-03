@@ -6,13 +6,14 @@
   <title>SebTech | Tecnología para tu día</title>
   <meta name="description" content="SebTech: celulares, tablets y accesorios con calidad y confianza. Envíos seguros a todo el país.">
   <meta name="author" content="SebTech">
-  <link rel="icon" type="image/png" href="img/LogoSebtechMinimalita.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
   <!-- Open Graph -->
   <meta property="og:title" content="SebTech | Tecnología para tu día">
   <meta property="og:description" content="Lo último en tecnología. Calidad y confianza en cada compra.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="img/LogoSebtechMinimalita.png">
+  <meta property="og:image" content="img/apple-touch-icon.png">
 
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +33,7 @@
 
   <header class="header">
     <div class="header__inner">
-      <a href="index.html" class="header__logo"><img src="img/LogoSebtechMinimalita.png" alt="Logo SebTech" class="header__logo-img"><span>Seb<span class="header__logo-accent">Tech</span></span></a>
+      <a href="index.html" class="header__logo"><img src="img/LogoSebtechMinimalita.webp" alt="Logo SebTech" class="header__logo-img" width="32" height="32"><span>Seb<span class="header__logo-accent">Tech</span></span></a>
 
       <button class="header__toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
 
@@ -61,7 +62,7 @@
       </div>
 
       <div class="hero__visual">
-        <img src="img/LogoSebtech.png" alt="Logo de SebTech" class="hero__logo-img">
+        <img src="img/LogoSebtech.webp" alt="Logo de SebTech" class="hero__logo-img" width="500" height="500" fetchpriority="high">
       </div>
     </section>
 
@@ -213,7 +214,7 @@
         var img = obtenerImagenPrincipal(p);
         slides +=
           '<div class="carrusel__slide" data-simple="true">' +
-            '<img src="' + img + '" alt="' + p.nombre + '" class="carrusel__img">' +
+            '<img src="' + img + '" alt="' + p.nombre + '" class="carrusel__img" loading="lazy" decoding="async">' +
             '<h3 class="carrusel__nombre">' + p.nombre + '</h3>' +
             '<span class="carrusel__precio">' + formatearPrecio(p.precio) + '</span>' +
             '<a href="pages/producto.html?id=' + p.id + '" class="btn btn--primary carrusel__cta">Ver producto</a>' +

@@ -9,11 +9,11 @@ const productos = [
     stock: 5,
     descripcion: "Tablet Samsung de 13,1 pulgadas con 128GB de almacenamiento y 8GB de RAM. Pensada para estudio, productividad y entretenimiento: pantalla grande y nítida de 2560x1600, procesador Exynos 1580, batería de 10.090 mAh con carga rápida de 45W y cuatro parlantes con sonido AKG Dolby Atmos. Incluye S Pen para tomar notas y dibujar, y conectividad WiFi con opción de doble SIM.",
     imagenes: [
-      "../img/GalaxyTabS10FE1.png",
-      "../img/GalaxyTabS10FE2.png",
-      "../img/GalaxyTabS10FE3.png",
-      "../img/GalaxyTabS10FE4.png",
-      "../img/GalaxyTabS10FE5.png"
+      "../img/GalaxyTabS10FE1.webp",
+      "../img/GalaxyTabS10FE2.webp",
+      "../img/GalaxyTabS10FE3.webp",
+      "../img/GalaxyTabS10FE4.webp",
+      "../img/GalaxyTabS10FE5.webp"
     ],
     especificaciones: [
       "Pantalla de 13,1 pulgadas (2560x1600)",
@@ -35,9 +35,9 @@ const productos = [
     stock: 8,
     descripcion: "Tablet Xiaomi de 11,2 pulgadas en color negro (TechnoBox) con 8GB de RAM y 128GB de almacenamiento. Su pantalla 3.2K con tasa de refresco de 144Hz es ideal para ver series, leer y jugar con fluidez. Procesador Snapdragon 7+ Gen 3, batería de 8.850 mAh con carga rápida 45W, parlantes cuádruples con Dolby Atmos y sistema HyperOS. Compatible con lápiz y teclado.",
     imagenes: [
-      "../img/Pad7Xiaomi1.png",
-      "../img/Pad7Xiaomi2.png",
-      "../img/Pad7Xiaomi3.png"
+      "../img/Pad7Xiaomi1.webp",
+      "../img/Pad7Xiaomi2.webp",
+      "../img/Pad7Xiaomi3.webp"
     ],
     especificaciones: [
       "Pantalla de 11,2 pulgadas 3.2K a 144Hz",
@@ -59,10 +59,10 @@ const productos = [
     stock: 4,
     descripcion: "Pack de 4 localizadores AirTag de Apple de 1ª generación, en color blanco. Encontrá llaves, mochila o valija usando la app Buscar en tu iPhone. Con chip U1 de banda ultrancha y Bluetooth, localización precisa, batería CR2032 reemplazable con duración de hasta un año y resistencia al agua y al polvo IP67.",
     imagenes: [
-      "../img/Airtag4u1.png",
-      "../img/Airtag4u2.png",
-      "../img/Airtag4u3.png",
-      "../img/Airtag4u4.png"
+      "../img/Airtag4u1.webp",
+      "../img/Airtag4u2.webp",
+      "../img/Airtag4u3.webp",
+      "../img/Airtag4u4.webp"
     ],
     especificaciones: [
       "Conjunto de 4 unidades",
@@ -82,10 +82,10 @@ const productos = [
     stock: 3,
     descripcion: "Tablet Lenovo de 11 pulgadas con conectividad 5G LTE, 128GB de almacenamiento y 8GB de RAM, en color gris oscuro. Incluye lápiz y teclado para trabajar y estudiar donde sea: escritura a mano, dibujo y tipeo cómodo, con buena autonomía para usarla durante todo el día.",
     imagenes: [
-      "../img/LenovoTabIdea1.png",
-      "../img/LenovoTabIdea2.png",
-      "../img/LenovoTabIdea3.png",
-      "../img/LenovoTabIdea4.png"
+      "../img/LenovoTabIdea1.webp",
+      "../img/LenovoTabIdea2.webp",
+      "../img/LenovoTabIdea3.webp",
+      "../img/LenovoTabIdea4.webp"
     ],
     especificaciones: [
       "Pantalla de 11 pulgadas",
@@ -105,11 +105,11 @@ const productos = [
     stock: 10,
     descripcion: "Smartphone Motorola de gama alta con pantalla Edge pOLED de 6,7 pulgadas a 120Hz, 512GB de almacenamiento, 12GB de RAM y dual SIM, en color verde. Procesador Snapdragon 7 Gen 3, batería de 5.000 mAh con carga turbo 68W, cámara triple de 50MP con estabilización óptica, ultra gran angular y telefoto, cámara frontal de 32MP y resistencia al agua IP68.",
     imagenes: [
-      "../img/Edge50DualSim1.png",
-      "../img/Edge50DualSim2.png",
-      "../img/Edge50DualSim3.png",
-      "../img/Edge50DualSim4.png",
-      "../img/Edge50DualSim5.png"
+      "../img/Edge50DualSim1.webp",
+      "../img/Edge50DualSim2.webp",
+      "../img/Edge50DualSim3.webp",
+      "../img/Edge50DualSim4.webp",
+      "../img/Edge50DualSim5.webp"
     ],
     especificaciones: [
       "Pantalla Edge pOLED de 6,7 pulgadas a 120Hz",
@@ -132,9 +132,9 @@ const productos = [
     stock: 1,
     descripcion: "Localizador AirTag de Apple de 1ª generación, de color blanco. Encontrá llaves, mochila o valija usando la app Buscar en tu iPhone. Con chip U1 de banda ultrancha y Bluetooth, batería CR2032 reemplazable con duración de hasta un año y resistencia al agua y al polvo IP67.",
     imagenes: [
-      "../img/Airtag1u1.png",
-      "../img/Airtag1u2.png",
-      "../img/Airtag1u3.png"
+      "../img/Airtag1u1.webp",
+      "../img/Airtag1u2.webp",
+      "../img/Airtag1u3.webp"
     ],
     especificaciones: [
       "Unidad individual",
@@ -163,7 +163,7 @@ const productos = [
     precio: null,
     stock: 0,
     descripcion: "Tablet Lenovo Tab M10 con buena autonomía y rendimiento para uso diario o trabajo.",
-    imagenes: ["../img/LenovoTabM10.png"],
+    imagenes: ["../img/LenovoTabM10.webp"],
     especificaciones: ["Buena autonomía", "Rendimiento confiable", "Uso diario y trabajo"]
   }
 ];
@@ -224,7 +224,7 @@ después del último producto que ya existe.
     precio: null,
     stock: 0,
     descripcion: "Descripción completa del producto con sus características y especificaciones.",
-    imagen: "../img/nombre-de-la-imagen.jpg",
+    imagenes: ["../img/nombre-de-la-imagen1.webp", "../img/nombre-de-la-imagen2.webp"],
     especificaciones: ["Spec 1", "Spec 2", "Spec 3"]
   },
 

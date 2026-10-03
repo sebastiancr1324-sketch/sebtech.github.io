@@ -29,6 +29,7 @@ body {
 
 img {
   max-width: 100%;
+  height: auto; // mantiene la proporción cuando el img tiene width/height en el HTML
   display: block;
 }
 

@@ -113,6 +113,14 @@ h1, h2, h3 {
   color: #0b3d9b;
   box-shadow: 0 0 24px rgba(11, 61, 155, 0.45);
 }
+.btn--claro {
+  background: #ffffff;
+  color: #0b3d9b;
+}
+.btn--claro:hover {
+  background: #7ce8ff;
+  color: #0b3d9b;
+}
 .btn--ghost {
   border-color: #223051;
   color: #000000;
@@ -1670,9 +1678,6 @@ h1, h2, h3 {
 }
 .cookie-banner.is-visible {
   transform: translateY(0);
-}
-.cookie-banner.is-hidden {
-  transform: translateY(100%);
 }
 .cookie-banner__inner {
   display: flex;

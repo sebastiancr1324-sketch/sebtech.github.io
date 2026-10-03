@@ -22,10 +22,6 @@
     transform: translateY(0);
   }
 
-  &.is-hidden {
-    transform: translateY(100%);
-  }
-
   &__inner {
     @extend %container;
     display: flex;

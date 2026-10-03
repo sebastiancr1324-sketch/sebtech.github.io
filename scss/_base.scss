@@ -64,6 +64,17 @@ h1, h2, h3 {
     }
   }
 
+  // Botón claro para usar sobre fondos azules (ej. banner de cookies)
+  &--claro {
+    background: $fondo;
+    color: $acento;
+
+    &:hover {
+      background: $brillo;
+      color: $acento;
+    }
+  }
+
   &--ghost {
     border-color: $bordes;
     color: $texto1;

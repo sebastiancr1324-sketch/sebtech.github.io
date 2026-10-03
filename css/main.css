@@ -1316,7 +1316,7 @@ h1, h2, h3 {
 .producto-detail__specs-section {
   margin-top: 1rem;
 }
-.producto-detail__specs-section h3 {
+.producto-detail__specs-section h2 {
   font-family: "Chakra Petch", sans-serif;
   font-size: 1rem;
   font-weight: 600;

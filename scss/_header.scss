@@ -3,118 +3,239 @@
 
 // =====================================================
 // HEADER / NAV
+// Sticky, blanco semitransparente con desenfoque. En celular el menú se
+// abre como panel a pantalla completa debajo del header.
 // =====================================================
+
+// A partir de este ancho entran el menú completo y el botón "Escribinos"
+$bp-nav: 900px;
 
 .header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba($fondo, 0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid $bordes;
+  border-bottom: 1px solid var(--line);
+
+  // El fondo con blur va en un pseudo-elemento: si backdrop-filter estuviera
+  // en el header, el panel fijo del menú móvil quedaría atrapado adentro.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba($white, 0.82);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    backdrop-filter: blur(12px) saturate(1.4);
+    transition: background-color $t ease;
+  }
+
+  .menu-abierto &::before {
+    background: var(--white);
+  }
 
   &__inner {
     @extend %container;
-    @include flex(row, center, space-between);
-    padding-block: $space-sm;
-  }
-
-  &__logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: space-between;
+    gap: $space-4;
+    height: var(--alto-header);
+  }
+
+  // ---------- Logo ----------
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-family: $font-display;
-    font-size: 1.4rem;
+    font-size: 1.375rem;
     font-weight: 700;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.01em;
+    color: var(--ink);
     text-decoration: none;
+    flex-shrink: 0;
+  }
 
+  &__logo-accent {
+    color: var(--brand);
+  }
 
-    .header__logo-accent {
-      color: $acento;
+  &__logo-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  // ---------- Botón ☰ (solo celular / tablet chica) ----------
+  &__toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px; // alinea el ícono con el borde del contenedor
+    padding: 0;
+    border: 0;
+    border-radius: $radius-btn;
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--surface);
     }
 
-    &-img {
-      height: 32px;
-      width: auto;
+    @media (min-width: $bp-nav) {
+      display: none;
     }
   }
 
+  &__toggle-icono {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
 
-  &__nav {
-    ul {
-      @include flex(row, center, center, $space-md);
+    &--cerrar {
+      display: none;
+    }
+  }
+
+  &__toggle[aria-expanded='true'] &__toggle-icono {
+    &--abrir {
+      display: none;
     }
 
-    a {
-      font-family: $font-mono;
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      position: relative;
-      padding-bottom: 4px;
+    &--cerrar {
+      display: block;
+    }
+  }
+
+  // ---------- Navegación ----------
+  &__nav {
+    // Celular: panel a pantalla completa, oculto hasta abrirlo
+    display: none;
+    position: fixed;
+    inset: calc(var(--alto-header) + 1px) 0 0 0;
+    z-index: 99;
+    flex-direction: column;
+    gap: $space-5;
+    padding: $space-4 $gutter $space-6;
+    background: var(--white);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    &.is-open {
+      display: flex;
+      animation: menu-entra $t-slow $ease both;
+    }
+
+    @media (min-width: $bp-nav) {
+      display: flex;
+      position: static;
+      flex-direction: row;
+      align-items: center;
+      gap: $space-5;
+      padding: 0;
+      background: none;
+      overflow: visible;
+      animation: none;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $bp-nav) {
+      flex-direction: row;
+      align-items: center;
+      gap: $space-1;
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color $t-fast ease;
+
+    &:hover,
+    &[aria-current='page'] {
+      color: var(--brand);
+    }
+
+    // Celular: links grandes separados por una línea
+    @media (max-width: #{$bp-nav - 1px}) {
+      padding-block: $space-3;
+      font-size: 1.25rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--line);
+
+      &[aria-current='page']::after {
+        content: "";
+        width: 6px;
+        height: 6px;
+        margin-left: 10px;
+        border-radius: 50%;
+        background: var(--brand);
+      }
+    }
+
+    // Escritorio: línea fina de 2 px debajo del activo
+    @media (min-width: $bp-nav) {
+      padding: 10px 12px;
+      font-size: 0.9375rem;
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
+        left: 12px;
+        right: 12px;
+        bottom: 2px;
         height: 2px;
-        background: $acento;
-        transition: width 0.25s ease;
+        border-radius: 2px;
+        background: var(--brand);
+        transform: scaleX(0);
+        transition: transform $t ease;
       }
 
       &:hover::after,
       &[aria-current='page']::after {
-        width: 100%;
+        transform: scaleX(1);
       }
-    }
-
-    // Nav simple: se apila en mobile, se acomoda a partir de tablet
-    display: none;
-
-    &.is-open {
-      display: block;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: $encabezado;
-      border-bottom: 1px solid $bordes;
-      padding: $space-sm;
-
-      a {
-    color: $footer; 
-  }
-
-      ul {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: $space-sm;
-      }
-    }
-
-    @include respond-tablet {
-      display: block;
-      position: static;
-      background: none;
-      border: none;
-      padding: 0;
     }
   }
 
-  &__toggle {
-    background: none;
-    border: 1px solid $bordes;
-    border-radius: $radius-sm;
-    color: $texto1;
-    padding: 0.4rem 0.6rem;
-    font-size: 1.1rem;
-
-    @include respond-tablet {
-      display: none;
+  &__cta {
+    @media (max-width: #{$bp-nav - 1px}) {
+      width: 100%;
+      padding: 16px 22px;
+      font-size: 1rem;
     }
+  }
+}
+
+// Con el menú abierto la página de atrás no scrollea
+.menu-abierto {
+  overflow: hidden;
+
+  body {
+    overflow: hidden;
+  }
+}
+
+@keyframes menu-entra {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

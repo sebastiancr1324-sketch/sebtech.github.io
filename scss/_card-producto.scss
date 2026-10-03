@@ -1,0 +1,167 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// =====================================================
+// TARJETA DE PRODUCTO — la misma en la portada, el catálogo y
+// "productos relacionados". La arma tarjetaProducto() en js/products.js.
+// =====================================================
+
+.card-producto {
+  container-type: inline-size;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform $t-slow $ease,
+    box-shadow $t-slow ease,
+    border-color $t-slow ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: transparent;
+    box-shadow: var(--shadow);
+
+    .card-producto__media img {
+      transform: scale(1.04);
+    }
+
+    .card-producto__flecha {
+      background: var(--brand);
+      color: var(--white);
+    }
+  }
+
+  // ---------- Imagen ----------
+  // Cuadrado fijo: la foto va posicionada adentro para que una imagen
+  // vertical no estire la caja (y todas las tarjetas queden parejas)
+  &__media {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--surface);
+
+    img {
+      position: absolute;
+      top: 12%;
+      left: 12%;
+      width: 76%;
+      height: 76%;
+      object-fit: contain;
+      transition: transform $t-slow $ease;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  // ---------- Texto ----------
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: $space-3 18px 18px;
+  }
+
+  &__categoria {
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+
+  &__title {
+    margin-top: 2px;
+    font-family: $font-body;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-1;
+    margin-top: auto;
+    padding-top: $space-3;
+  }
+
+  &__price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+
+  &__flecha {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--brand-soft);
+    color: var(--brand);
+    transition: background-color $t ease, color $t ease;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  // Tarjetas anchas (2 columnas en tablet): foto apaisada para que no
+  // quede un cuadrado enorme
+  @container (min-width: 300px) {
+    &__media {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  // Tarjetas angostas (2 columnas en celular): todo un poco más chico
+  @container (max-width: 210px) {
+    &__body {
+      padding: $space-2 $space-2 14px;
+    }
+
+    &__price {
+      font-size: 1.0625rem;
+    }
+
+    &__flecha {
+      display: none;
+    }
+  }
+
+  // ---------- Sin stock ----------
+  &--sin-stock {
+    .card-producto__media img {
+      opacity: 0.6;
+      filter: grayscale(0.5);
+    }
+
+    .card-producto__price {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// =====================================================
+// ENCABEZADO DE PÁGINA — franja --surface con breadcrumb o eyebrow,
+// título y bajada (catálogo, envíos, nosotros, FAQ, legales, 404)
+// =====================================================
+
+.pagina-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+
+  &__inner {
+    @extend %container;
+    padding-block: clamp(40px, 6vw, 72px) clamp(32px, 5vw, 56px);
+  }
+
+  &__eyebrow {
+    @extend %eyebrow;
+    margin-bottom: $space-2;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 3vw + 1rem, 3rem);
+    line-height: 1.1;
+  }
+
+  &__text {
+    max-width: 60ch;
+    margin-top: $space-2;
+    font-size: 1.0625rem;
+    color: var(--muted);
+  }
+
+  .breadcrumb {
+    margin-bottom: $space-3;
+  }
+}
+
+// =====================================================
+// PÁGINA 404
+// =====================================================
+
+.pagina-404 {
+  @extend %container;
+  padding-block: $space-6 $section-y;
+
+  &__text {
+    max-width: 52ch;
+    color: var(--ink-2);
+  }
+
+  &__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    margin-top: $space-4;
+  }
+}

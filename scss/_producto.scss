@@ -2,225 +2,269 @@
 @use 'mixins' as *;
 
 // =====================================================
-// PAGINA INDIVIDUAL DE PRODUCTO
+// PÁGINA INDIVIDUAL DE PRODUCTO
 // =====================================================
 
 .producto-detail {
   @extend %container;
-  padding-block: $space-md;
+  padding-block: $space-4 $space-7;
+
+  .breadcrumb {
+    margin-bottom: $space-4;
+  }
 
   &__grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: $space-md;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-5;
 
     @include respond-tablet {
-      grid-template-columns: 1fr 1fr;
-      gap: $space-lg;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(#{$space-5}, 5vw, #{$space-7});
       align-items: start;
     }
   }
 
+  // ---------- Galería ----------
   &__gallery {
-    background: $encabezado;
-    border: 1px solid $bordes;
-    border-radius: $radius-md;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
+    gap: $space-2;
+
+    @include respond-tablet {
+      position: sticky;
+      top: calc(var(--alto-header) + #{$space-4});
+    }
   }
 
   &__img {
     width: 100%;
-    height: 420px;
+    aspect-ratio: 1;
+    padding: 10%;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
     object-fit: contain;
-    padding: $space-md;
   }
 
   &__thumbs {
     display: flex;
     flex-wrap: wrap;
-    gap: $space-xs + 0.25rem;
-    padding: $space-sm $space-md 1.5rem;
+    gap: $space-1;
   }
 
   &__thumb {
-    width: 70px;
-    height: 70px;
-    padding: 0;
-    border: 2px solid $bordes;
-    border-radius: 10px;
-    background: $encabezado;
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    padding: 6px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
     cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.2s ease;
+    transition: border-color $t-fast ease, box-shadow $t-fast ease;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      padding: 6px;
     }
 
-    &:hover,
+    &:hover {
+      border-color: var(--brand);
+    }
+
     &.is-active {
-      border-color: $brillo;
+      border-color: var(--brand);
+      box-shadow: inset 0 0 0 1px var(--brand);
     }
   }
 
+  // ---------- Información ----------
   &__info {
     display: flex;
     flex-direction: column;
-    gap: $space-sm;
+    align-items: flex-start;
+    gap: $space-3;
   }
 
   &__category {
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: $acento;
+    @extend %eyebrow;
   }
 
   &__title {
-    font-family: $font-display;
-    font-size: clamp(1.8rem, 4vw, 2.4rem);
-    font-weight: 700;
-    color: $texto1;
-    line-height: 1.2;
+    font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem);
+    line-height: 1.1;
   }
 
   &__price {
-    font-family: $font-mono;
-    font-size: 1.4rem;
-    color: $acento;
-    font-weight: 500;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+
+    // Sin precio cargado: "Consultar precio" no debe parecer un título
+    &--consultar {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
   }
 
   &__stock {
-    display: inline-block;
-    font-family: $font-mono;
-    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.8125rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.75rem;
-    border-radius: $radius-sm;
+
+    &::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+    }
 
     &--con {
-      color: #17762f;
-      background: rgba(30, 142, 62, 0.1);
-      border: 1px solid rgba(30, 142, 62, 0.3);
+      color: #17672b;
+      background: #e8f6ec;
     }
 
     &--sin {
-      color: $acento;
-      background: rgba($acento, 0.1);
-      border: 1px solid rgba($acento, 0.3);
+      color: var(--brand);
+      background: var(--brand-soft);
     }
   }
 
   &__desc {
-    color: $texto2;
-    font-size: 1rem;
+    color: var(--ink-2);
     line-height: 1.7;
   }
 
   &__sin-stock {
-    background: rgba($acento, 0.08);
-    border: 1px solid rgba($acento, 0.35);
-    border-left: 3px solid $acento;
-    border-radius: $radius-sm;
-    padding: $space-sm $space-md;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: $texto2;
+    width: 100%;
+    padding: $space-3 $space-4;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--brand);
+    background: var(--brand-soft);
+    font-size: 0.9375rem;
+    color: var(--ink-2);
 
     strong {
-      color: $acento;
+      color: var(--brand);
     }
   }
 
   &__specs-section {
-    margin-top: $space-sm;
+    width: 100%;
+    margin-top: $space-1;
 
     h2 {
-      font-family: $font-display;
-      font-size: 1rem;
-      font-weight: 600;
-      color: $texto1;
-      margin-bottom: $space-xs + 0.25rem;
+      margin-bottom: $space-1;
+      font-size: 1.125rem;
     }
   }
 
   &__specs {
-    display: flex;
-    flex-direction: column;
-    gap: $space-xs;
-
     li {
       display: flex;
-      align-items: center;
-      gap: $space-xs + 0.25rem;
-      font-size: 0.9rem;
-      color: $texto2;
+      align-items: flex-start;
+      gap: $space-2;
+      padding-block: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.9375rem;
+      color: var(--ink-2);
 
       &::before {
-        content: "✓";
-        color: $acento;
-        font-weight: 700;
+        content: "";
         flex-shrink: 0;
+        width: 18px;
+        height: 18px;
+        margin-top: 2px;
+        border-radius: 50%;
+        background:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b3d9b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")
+          center / 12px no-repeat,
+          var(--brand-soft);
       }
     }
   }
 
   &__actions {
-    margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: $space-sm;
+    gap: $space-2;
+    width: 100%;
+    margin-top: $space-2;
+
+    .btn {
+      width: 100%;
+      padding-block: 16px;
+      font-size: 1rem;
+    }
+  }
+
+  // Envío, garantía y pago debajo del botón de compra
+  &__beneficios {
+    display: grid;
+    gap: $space-2;
+    width: 100%;
+    padding: $space-3 $space-4;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: $space-2;
+      font-size: 0.9375rem;
+      color: var(--ink-2);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--brand);
+    }
   }
 
   &__share {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid $bordes;
+    width: 100%;
+    padding-top: $space-3;
   }
 
   &__share-label {
-    font-family: $font-mono;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #666;
-    margin-bottom: $space-xs + 0.25rem;
+    margin-bottom: $space-1;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--muted);
   }
 
   &__share-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: $space-xs + 0.25rem;
+    gap: $space-1;
   }
 
   &__share-btn {
     display: inline-flex;
     align-items: center;
-    gap: $space-xs;
-    padding: 0.6rem 1.2rem;
-    border: 1px solid $bordes;
-    border-radius: $radius-sm;
-    background: $fondo;
-    color: $texto1;
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    gap: $space-1;
+    padding: 9px 14px;
+    border: 1px solid var(--line);
+    border-radius: $radius-btn;
+    background: var(--white);
+    color: var(--ink-2);
+    font-size: 0.875rem;
+    font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition: border-color $t-fast ease, color $t-fast ease;
 
     svg {
       width: 16px;
@@ -228,8 +272,8 @@
     }
 
     &:hover {
-      border-color: $acento;
-      color: $acento;
+      border-color: var(--brand);
+      color: var(--brand);
     }
   }
 
@@ -240,44 +284,47 @@
 
   &__loading,
   &__error {
+    padding: $space-6 $space-3;
     text-align: center;
-    padding: $space-lg $space-sm;
-    font-size: 1.1rem;
-    color: #666;
+    color: var(--muted);
 
     a {
-      color: $acento;
+      color: var(--brand);
       text-decoration: underline;
     }
   }
 
   &__notfound {
+    padding: $space-7 $space-3;
     text-align: center;
-    padding: $space-lg $space-sm;
+
+    .producto-detail__actions {
+      align-items: center;
+
+      .btn {
+        width: auto;
+      }
+    }
   }
 
   &__notfound-code {
+    margin-bottom: $space-2;
     font-family: $font-display;
     font-size: clamp(4rem, 10vw, 6rem);
     font-weight: 700;
-    color: $acento;
     line-height: 1;
-    margin-bottom: $space-sm;
+    color: var(--brand);
   }
 
   &__notfound-title {
-    font-family: $font-display;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: $texto1;
-    margin-bottom: $space-xs;
+    margin-bottom: $space-1;
+    font-size: 1.5rem;
   }
 
   &__notfound-text {
-    color: #666;
-    font-size: 0.95rem;
-    max-width: 40ch;
-    margin: 0 auto $space-md;
+    max-width: 44ch;
+    margin: 0 auto $space-4;
+    color: var(--muted);
   }
 }
 
@@ -286,36 +333,20 @@
 // =====================================================
 
 .relacionados {
-  @extend %container;
-  padding-block: $space-md;
+  padding-block: $section-y;
+  background: var(--surface);
 
   &__inner {
-    border-top: 1px solid $bordes;
-    padding-top: $space-sm;
-  }
-
-  &__eyebrow {
-    @extend %eyebrow;
-    display: block;
-    margin-bottom: $space-xs;
-  }
-
-  &__title {
-    font-size: clamp(1.4rem, 3vw, 1.9rem);
-    margin-bottom: $space-md;
+    @extend %container;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: $space-md;
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, calc(50% - 6px)), 1fr));
+    gap: $space-2;
 
     @include respond-tablet {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include respond-desktop {
-      grid-template-columns: repeat(3, 1fr);
+      gap: $space-4;
     }
   }
 }

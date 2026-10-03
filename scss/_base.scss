@@ -5,7 +5,9 @@
 // RESET & BASE
 // =====================================================
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,14 +15,20 @@
 
 html {
   scroll-behavior: smooth;
+  // Los anclas (#celulares, etc.) no quedan tapados por el header sticky
+  scroll-padding-top: calc(var(--alto-header) + #{$space-3});
   overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: $fondo;
-  color: $texto1;
+  background-color: var(--white);
+  color: var(--text);
   font-family: $font-body;
+  font-size: 1rem;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   // clip (y no hidden) recorta el desborde horizontal sin crear un contenedor
   // de scroll; con hidden el header dejaba de funcionar como sticky
   overflow-x: clip;
@@ -41,67 +49,231 @@ ul {
   list-style: none;
 }
 
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+// =====================================================
+// TIPOGRAFÍA
+// Chakra Petch para títulos (identidad tech), Inter para todo lo demás.
+// =====================================================
+
 h1, h2, h3 {
   font-family: $font-display;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4vw + 1rem, 3.75rem);
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem);
   line-height: 1.15;
 }
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.eyebrow {
+  @extend %eyebrow;
+}
+
+// =====================================================
+// LAYOUT
+// =====================================================
 
 .container {
   @extend %container;
 }
 
-.btn {
-  @include button-base;
+// Sección de página con la separación vertical estándar
+.seccion {
+  padding-block: $section-y;
 
-  &--primary {
-    background: $acento;
-    color: $fondo;
-
-    &:hover {
-      background: $brillo;
-      color: $acento;
-      box-shadow: 0 0 24px rgba($acento, 0.45);
-    }
+  &__inner {
+    @extend %container;
   }
 
-  // Botón claro para usar sobre fondos azules (ej. banner de cookies)
-  &--claro {
-    background: $fondo;
-    color: $acento;
+  &--surface {
+    background: var(--surface);
+  }
+}
+
+// Encabezado de sección: eyebrow + título (+ link a la derecha)
+.seccion-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $space-3 $space-5;
+  margin-bottom: clamp(#{$space-5}, 4vw, #{$space-6});
+
+  &__eyebrow {
+    @extend %eyebrow;
+    margin-bottom: $space-2;
+  }
+
+  &__title {
+    max-width: 22ch;
+  }
+
+  &__text {
+    margin-top: $space-2;
+    color: var(--muted);
+    max-width: 52ch;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    color: var(--brand);
+    text-decoration: none;
+    white-space: nowrap;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      transition: transform $t $ease;
+    }
 
     &:hover {
-      background: $brillo;
-      color: $acento;
+      color: var(--brand-hover);
+
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+// =====================================================
+// BOTONES
+// =====================================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-1;
+  padding: 14px 22px;
+  border: 1px solid transparent;
+  border-radius: $radius-btn;
+  font-family: $font-body;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color $t ease,
+    color $t ease,
+    border-color $t ease,
+    box-shadow $t ease,
+    transform $t ease;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &--primary {
+    background: var(--brand);
+    color: var(--white);
+
+    &:hover {
+      background: var(--brand-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-lg);
     }
   }
 
   &--ghost {
-    border-color: $bordes;
-    color: $texto1;
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
 
     &:hover {
-      border-color: $acento;
-      color: $acento;
+      border-color: var(--brand);
+      color: var(--brand);
     }
   }
+
+  // Sobre fondos azules u oscuros (franja de contacto)
+  &--blanco {
+    background: var(--white);
+    color: var(--brand);
+
+    &:hover {
+      background: var(--brand-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px rgba($ink, 0.25);
+    }
+  }
+
+  &--sm {
+    padding: 10px 16px;
+    font-size: 0.875rem;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &--bloque {
+    width: 100%;
+  }
+}
+
+// =====================================================
+// FOCO VISIBLE en todo lo clickeable
+// =====================================================
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
 }
 
 // Aviso que se muestra dentro de <noscript> cuando el contenido depende de JavaScript
 .aviso-sin-js {
   max-width: 60ch;
   margin-inline: auto;
-  padding: $space-lg $space-sm;
+  padding: $space-6 $space-3;
   text-align: center;
-  color: $texto2;
+  color: var(--muted);
 
   a {
-    color: $acento;
+    color: var(--brand);
     text-decoration: underline;
-  }
-
-  .carrusel & {
-    color: $tcuadros1;
   }
 }
 
@@ -111,7 +283,9 @@ h1, h2, h3 {
     scroll-behavior: auto;
   }
 
-  * {
+  *,
+  *::before,
+  *::after {
     animation: none !important;
     transition: none !important;
   }

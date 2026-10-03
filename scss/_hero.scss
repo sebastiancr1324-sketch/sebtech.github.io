@@ -2,68 +2,173 @@
 @use 'mixins' as *;
 
 // =====================================================
-// HERO
+// HERO — texto a la izquierda (55 %), composición de productos a la
+// derecha (45 %). En tablet y celular la imagen va arriba, más chica,
+// y el texto centrado.
 // =====================================================
 
 .hero {
-  @extend %container;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  gap: $space-lg;
-  padding-block: $space-xl $space-md;
   position: relative;
+  overflow: clip;
 
-  @include respond-desktop {
-    grid-template-columns: 1.1fr 0.9fr;
+  &__inner {
+    @extend %container;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: $space-5;
+    padding-block: $space-5 $space-7;
+
+    @include respond-desktop {
+      grid-template-columns: minmax(0, 11fr) minmax(0, 9fr);
+      gap: $space-6;
+      min-height: min(calc(80vh - var(--alto-header)), 760px);
+      padding-block: $space-6;
+    }
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: -2rem;
-    right: -3rem;
-    width: 420px;
-    height: 420px;
-    background: radial-gradient(circle, rgba($acento, 0.12), transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
+  // ---------- Texto ----------
+  &__content {
+    text-align: center;
 
-  & > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  &__eyebrow {
-    @extend %eyebrow;
-    display: block;
-    margin-bottom: $space-sm;
+    @include respond-desktop {
+      text-align: left;
+    }
   }
 
   &__title {
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
-    margin-bottom: $space-sm;
-    line-height: 1.08;
+    margin-block: $space-3 $space-4;
 
     em {
       font-style: normal;
-      color: $acento;
+      color: var(--brand);
     }
   }
 
   &__text {
-    color: $texto2;
-    max-width: 42ch;
-    margin-bottom: $space-md;
+    max-width: 46ch;
+    margin-inline: auto;
+    font-size: clamp(1.0625rem, 0.5vw + 0.95rem, 1.1875rem);
+    color: var(--muted);
+
+    @include respond-desktop {
+      margin-inline: 0;
+    }
   }
 
   &__actions {
-    @include flex(row, center, flex-start, $space-sm);
+    display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: $space-2;
+    margin-top: $space-5;
+
+    // Celular: botones apilados y del mismo ancho
+    @include respond-mobile {
+      flex-direction: column;
+      max-width: 340px;
+      margin-inline: auto;
+    }
+
+    @include respond-desktop {
+      justify-content: flex-start;
+    }
   }
 
+  // Mini-garantías debajo de los botones
+  &__garantias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $space-2 $space-4;
+    margin-top: $space-5;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-2);
+
+    @include respond-desktop {
+      justify-content: flex-start;
+    }
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      gap: $space-1;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      padding: 4px;
+      border-radius: 50%;
+      background: var(--brand-soft);
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+  }
+
+  // ---------- Composición de productos ----------
   &__visual {
-    @include flex(row, center, center);
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1;
+    margin-inline: auto;
+    order: -1; // en celular y tablet, arriba del texto
+
+    @include respond-tablet {
+      max-width: 400px;
+    }
+
+    @include respond-desktop {
+      max-width: 560px;
+      order: 0;
+    }
+  }
+
+  // Círculo suave de fondo con un brillo muy sutil
+  &__blob {
+    position: absolute;
+    inset: 6%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, $white 0%, $brand-soft 58%, #e2eaf9 100%);
+    box-shadow:
+      0 40px 120px rgba($brand, 0.16),
+      inset 0 0 0 1px rgba($brand, 0.05);
+
+    // Anillo fino decorativo
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -5%;
+      border-radius: 50%;
+      border: 1px dashed rgba($brand, 0.16);
+    }
+  }
+
+  &__img {
+    position: absolute;
+    height: auto;
+    filter: drop-shadow(0 18px 28px rgba($ink, 0.18));
+
+    &--tablet {
+      width: 80%;
+      left: 12%;
+      top: 16%;
+    }
+
+    &--celular {
+      width: 33%;
+      left: 3%;
+      bottom: 7%;
+      transform: rotate(-5deg);
+    }
+
+    &--airtag {
+      width: 24%;
+      right: 4%;
+      bottom: 12%;
+      filter: drop-shadow(0 14px 18px rgba($ink, 0.2));
+    }
   }
 }

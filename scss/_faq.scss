@@ -2,53 +2,76 @@
 @use 'mixins' as *;
 
 // =====================================================
-// PAGINA FAQ
+// PÁGINA FAQ
 // =====================================================
 
 .faq {
   @extend %container;
-  padding-block: $space-md;
+  padding-block: $space-6 $section-y;
 
-  &__title {
-    color: $texto1;
-    margin-bottom: $space-xs;
+  &__lista {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    max-width: 820px;
   }
 
-  &__text {
-    color: $texto2;
-    margin-bottom: $space-lg;
+  &__ayuda {
+    max-width: 820px;
+    margin-top: $space-5;
+    color: var(--muted);
+
+    a {
+      color: var(--brand);
+      font-weight: 600;
+    }
   }
 }
 
 .faq-item {
-  background: $cartas;
-  border: 1px solid $bordes;
-  border-radius: $radius-md;
-  margin-bottom: $space-sm;
-  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color $t ease, box-shadow $t ease;
+
+  &:hover {
+    border-color: rgba($brand, 0.4);
+  }
+
+  &[open] {
+    border-color: var(--brand);
+    box-shadow: var(--shadow-sm);
+  }
 
   summary {
-    cursor: pointer;
-    list-style: none;
-    padding: $space-sm $space-md;
-    font-family: $font-display;
-    color: $tcuadros1;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: $space-sm;
+    gap: $space-3;
+    padding: 18px $space-4;
+    border-radius: var(--radius);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--ink);
+    list-style: none;
+    cursor: pointer;
 
     &::-webkit-details-marker {
       display: none;
     }
 
+    // Ícono +, que gira a × cuando la pregunta está abierta
     &::after {
-      content: '+';
-      font-family: $font-mono;
-      font-size: 1.3rem;
-      color: $brillo;
-      transition: transform 0.25s ease;
+      content: "";
       flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b3d9b' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 6v12M6 12h12'/%3E%3C/svg%3E")
+          center / 16px no-repeat,
+        var(--brand-soft);
+      transition: transform $t-slow $ease;
     }
   }
 
@@ -57,9 +80,8 @@
   }
 
   &__respuesta {
-    padding: 0 $space-md $space-md;
-    color: $tcuadros2;
-    font-size: 0.92rem;
-    line-height: 1.6;
+    padding: 0 $space-4 20px;
+    color: var(--ink-2);
+    line-height: 1.7;
   }
 }

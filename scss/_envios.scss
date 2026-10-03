@@ -2,108 +2,72 @@
 @use 'mixins' as *;
 
 // =====================================================
-// PAGINA DE ENVIOS
+// PÁGINA DE ENVÍOS
 // =====================================================
 
-// Animación de aparición usada al cargar la página (escritorio/tablet)
-@keyframes envios-fade-up {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .envios {
-      @extend %container;
-      padding-block: 0 $space-md;
+  @extend %container;
+  padding-block: $space-6 $section-y;
 
   &__grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: $space-md;
-    margin-top: 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-3;
 
     @include respond-tablet {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: $space-4;
     }
+  }
+}
+
+// Tarjeta informativa blanca con ícono (envíos y valores de "Nosotros")
+.envios-card,
+.card-valor {
+  padding: 28px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  transition: border-color $t-slow ease, box-shadow $t-slow ease;
+
+  &:hover {
+    border-color: var(--brand);
+    box-shadow: var(--shadow);
   }
 }
 
 .envios-card {
-  background: $cartas;
-  border: 1px solid $bordes;
-  border-radius: $radius-md;
-  padding: $space-md;
-  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-  opacity: 1;
-
-  // En escritorio/tablet: las cards aparecen al cargar la página
-  @include respond-tablet {
-    animation: envios-fade-up 0.6s ease both;
-  }
-
-  // Escalonado en escritorio/tablet
-  @include respond-tablet {
-    &:nth-child(2) { animation-delay: 0.12s; }
-    &:nth-child(3) { animation-delay: 0.24s; }
-  }
-
-  &:hover {
-    border-color: $brillo;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba($acento, 0.2);
-  }
-
   &__icon {
-    color: $brillo;
-    margin-bottom: $space-sm;
-
-    svg {
-      width: 34px;
-      height: 34px;
-    }
+    @include icono-suave(48px, 24px, 12px);
+    margin-bottom: $space-4;
   }
 
   &__title {
-    font-family: $font-display;
-    font-size: 1.15rem;
-    color: $tcuadros1;
-    margin-bottom: $space-xs;
+    margin-bottom: 6px;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 
   &__text {
-    color: $tcuadros2;
-    font-size: 0.9rem;
+    color: var(--muted);
     line-height: 1.6;
   }
 }
 
 .envios-nota {
-  margin-top: 2.5rem;
-  background: $fondo;
-  border: 1px solid $bordes;
-  border-radius: $radius-md;
-  padding: $space-md;
-  text-align: center;
-
-  // En escritorio/tablet: aparece al cargar la página (con retraso)
-  @include respond-tablet {
-    animation: envios-fade-up 0.6s ease 0.4s both;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3 $space-4;
+  margin-top: $space-5;
+  padding: $space-4 28px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
 
   &__text {
-    color: $texto2;
-    font-size: 0.95rem;
-
-    + .envios-nota__text {
-      margin-top: $space-xs;
-    }
-
-    a {
-      color: $acento;
-      font-weight: 600;
-    }
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--ink);
   }
 }

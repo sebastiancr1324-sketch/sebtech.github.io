@@ -73,11 +73,12 @@ function insertarPartes(rel) {
   let html = leer(rel);
   for (const parte of PARTES) {
     const plantilla = leer(`partials/${parte}.html`);
-    const patron = new RegExp(`(<!-- parte:${parte}\\b[^>]*-->\\n)[\\s\\S]*?(\\s*<!-- /parte:${parte} -->)`);
+    // \r?\n: en Windows git puede bajar los archivos con saltos de línea CRLF
+    const patron = new RegExp(`(<!-- parte:${parte}\\b[^>]*-->\\r?\\n)[\\s\\S]*?(\\s*<!-- /parte:${parte} -->)`);
     if (!patron.test(html)) {
       throw new Error(`${rel}: falta el marcador <!-- parte:${parte} -->`);
     }
-    html = html.replace(patron, (m, abre, cierra) => abre + renderizarParte(plantilla, rel).replace(/\n$/, '') + cierra);
+    html = html.replace(patron, (m, abre, cierra) => abre + renderizarParte(plantilla, rel).replace(/\r?\n$/, '') + cierra);
   }
   escribir(rel, html);
 }

@@ -1,40 +1,59 @@
 // =====================================================
 // VARIABLES — SebTech
-// Paleta inspirada en el logo: navy profundo + celeste eléctrico
+// Paleta del logo: azul SebTech + navy profundo + cian eléctrico.
+// Los colores se publican como variables CSS en _tokens.scss; en los
+// partials se usan con var(--x). Los valores Sass quedan para los casos
+// que necesitan calcular transparencias (rgba).
 // =====================================================
 
-// Colores
-$fondo: #ffffff;   // fondo general
-$encabezado: #0d1524;   // superficie (header, footer)
-$cartas: #0b3d9b;   // cards
-$bordes: #223051;   // bordes / divisores
+// Marca
+$brand: #0b3d9b;        // azul SebTech: botones, links, acentos
+$brand-hover: #082e75;  // versión más oscura del mismo azul
+$brand-soft: #eef3fc;   // azul muy claro para fondos de íconos y badges
+$accent: #7ce8ff;       // cian: SOLO sobre fondos oscuros (ink o brand)
+$ink: #0d1524;          // navy: títulos y fondos oscuros
+$ink-2: #223051;        // texto secundario oscuro
 
-$acento: #0b3d9b;   // acento primario
-$brillo: #7ce8ff;   // hover / brillo
+// Neutros
+$text: #0d1524;
+$muted: #5b6578;        // texto secundario (5.9:1 sobre blanco)
+$line: #e3e7ee;         // bordes y divisores
+$surface: #f6f8fb;      // secciones alternas y fondo de fotos de producto
+$white: #ffffff;
 
-$texto1: #000000;    // texto claro principal
-$texto2: #000000;  // texto secundario / muted
-$tcuadros1: #f0f0f0;   // texto claro principal
-$tcuadros2: #e0e0e0;   // texto claro secundario
-$footer: #f0f0f0;      // texto del footer
-$logofooter: #ffffff;    // color del logo en el footer
+// WhatsApp
+$whatsapp: #25d366;
+$whatsapp-hover: #1ebe5d;
 
-// Tipografías
-$font-display: 'Chakra Petch', sans-serif; // titulos, tech/angular
-$font-body: 'Inter', sans-serif;           // texto general
-$font-mono: 'JetBrains Mono', monospace;   // labels, eyebrows, specs
+// Tipografías (2 familias)
+$font-display: 'Chakra Petch', system-ui, sans-serif; // títulos y logo
+$font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; // todo lo demás
 
-// Espaciados
-$space-xs: 0.5rem;
-$space-sm: 1rem;
-$space-md: 2rem;
-$space-lg: 4rem;
-$space-xl: 2rem;
+// Espaciados (múltiplos de 4/8 px)
+$space-1: 0.5rem;   // 8
+$space-2: 0.75rem;  // 12
+$space-3: 1rem;     // 16
+$space-4: 1.5rem;   // 24
+$space-5: 2rem;     // 32
+$space-6: 3rem;     // 48
+$space-7: 4rem;     // 64
 
-// Bordes
-$radius-sm: 6px;
-$radius-md: 14px;
+$section-y: clamp(64px, 8vw, 112px); // separación entre secciones
+$gutter: clamp(16px, 4vw, 32px);     // margen lateral del contenedor
+$container: 1200px;
+
+// Forma
+$radius-sm: 8px;
+$radius: 14px;
+$radius-lg: 20px;
+$radius-btn: 10px;
+
+// Movimiento
+$ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+$t-fast: 0.15s;
+$t: 0.2s;
+$t-slow: 0.25s;
 
 // Breakpoints
 $bp-tablet: 768px;
-$bp-desktop: 1100px;
+$bp-desktop: 1024px;

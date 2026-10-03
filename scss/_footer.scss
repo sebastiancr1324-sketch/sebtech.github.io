@@ -2,173 +2,225 @@
 @use 'mixins' as *;
 
 // =====================================================
-// FOOTER
+// FOOTER — el único bloque oscuro (--ink) de cada página
+// Marca · Tienda · Ayuda · Contacto, y abajo © + legales.
+// Nada de azul --brand sobre el navy: títulos en blanco, links en blanco
+// al 70 %, detalles en cian.
 // =====================================================
 
 .footer {
-  border-top: 1px solid $bordes;
-  background: $encabezado;
-  margin-top: $space-md;
+  background: var(--ink);
+  color: rgba($white, 0.7);
+  font-size: 0.9375rem;
 
+  // Sobre fondo oscuro el foco va en cian (el azul no se vería)
+  :focus-visible {
+    outline-color: var(--accent);
+  }
+
+  // Celular: marca arriba, Tienda y Ayuda lado a lado, Contacto abajo.
+  // Tablet: marca arriba y 3 columnas. Escritorio: 4 columnas.
   &__inner {
     @extend %container;
-    @include flex(column, flex-start, center, $space-sm);
-    padding-block: $space-lg $space-md;
-    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-6 $space-5;
+    padding-block: $space-7 $space-6;
 
+    // Contacto más ancha para que el mail entre en una línea
     @include respond-tablet {
-      @include flex(row, center, space-between, 0);
-      text-align: left;
+      grid-template-columns: 1fr 1fr 1.4fr;
+    }
+
+    @include respond-desktop {
+      grid-template-columns: 1.5fr 1fr 1.2fr 1.6fr;
+      gap: $space-5;
     }
   }
 
-  &__brand {
-    font-family: $font-display;
-    font-size: 1.1rem;
-    color: $logofooter;
-
-    span {
-      color: $brillo;
+  &__col:last-child {
+    @include respond-mobile {
+      grid-column: 1 / -1;
     }
+  }
+
+  // ---------- Marca ----------
+  &__marca {
+    grid-column: 1 / -1;
+
+    @include respond-desktop {
+      grid-column: auto;
+      padding-right: $space-5;
+    }
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-display;
+    font-size: 1.375rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  // El ícono del logo es azul: va sobre una ficha blanca para que se vea
+  // igual que en el resto del sitio, sin cambiarle los colores.
+  &__logo-icono {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--white);
+
+    img {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  &__logo-accent {
+    color: var(--accent);
   }
 
   &__tagline {
-    color: $footer;
-    font-size: 0.85rem;
-    margin-top: 0.2rem;
+    margin-top: $space-3;
+    max-width: 34ch;
+    line-height: 1.6;
   }
 
-  // Nueva estructura de 3 columnas para tablet/desktop
-  @include respond-tablet {
-    &__inner {
-      @include flex(row, flex-start, space-between, $space-md);
-    }
-
-    &__brand {
-      flex: 0 0 auto;
-    }
-
-    &__contacto {
-      flex: 1 1 auto;
-      text-align: center;
-      max-width: 320px;
-      margin: 0 auto;
-    }
-
-    &__social {
-      flex: 0 0 auto;
-    }
-  }
-
-  &__contacto-title {
-    font-family: $font-display;
-    font-size: 0.9rem;
-    color: $brillo;
-    margin-bottom: $space-xs;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  &__social {
-    @include flex(row, center, center, $space-sm);
-
-    a {
-      @include flex(row, center, center);
-      width: 40px;
-      height: 40px;
-      border: 1px solid $bordes;
-      border-radius: 50%;
-      transition: border-color 0.25s ease, color 0.25s ease;
-      color: $footer;
-
-      &:hover {
-        border-color: $footer;
-        color: $footer;
-      }
-
-      svg {
-        width: 18px;
-        height: 18px;
-      }
-    }
-  }
-
-  &__contacto-fila {
-    margin-top: $space-xs;
+  &__redes {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-
-    @include respond-tablet {
-      align-items: center;
-      text-align: center;
-    }
-
-    li {
-      color: $footer;
-    }
+    gap: $space-2;
+    margin-top: $space-4;
   }
 
-  &__wa {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-family: $font-mono;
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: $encabezado; // texto oscuro: el blanco sobre este verde no se lee bien
-    background: #25D366; // Verde oficial de WhatsApp
-    border: 1px solid #25D366;
-    border-radius: $radius-sm;
-    padding: 0.4rem 0.8rem;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  &__red {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba($white, 0.16);
+    border-radius: 50%;
+    color: var(--white);
+    transition: border-color $t ease, background-color $t ease, color $t ease;
 
     svg {
-      width: 14px;
-      height: 14px;
-      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
     }
 
     &:hover {
-      color: $encabezado;
-      background: #1ebe5d; // Verde un poco más oscuro para hover
-      border-color: #1ebe5d;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-    }
-
-    &:focus-visible {
-      outline: 2px solid #25D366;
-      outline-offset: 2px;
+      border-color: var(--accent);
+      color: var(--accent);
     }
   }
 
-  &__contacto-link {
-    color: $footer;
-    font-size: 0.82rem;
-    text-decoration: underline;
-    word-break: break-all;
+  // ---------- Columnas ----------
+  &__titulo {
+    margin-bottom: $space-3;
+    font-family: $font-body;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  &__lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__link {
+    color: rgba($white, 0.7);
+    text-decoration: none;
+    transition: color $t-fast ease;
 
     &:hover {
-      color: $brillo;
+      color: var(--white);
+    }
+
+    &--mail {
+      overflow-wrap: anywhere;
     }
   }
 
-  &__horario {
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    color: $footer;
-    opacity: 0.85;
+  &__dato {
+    color: rgba($white, 0.7);
   }
 
-  &__legal {
+  // ---------- Fila inferior ----------
+  &__base {
     @extend %container;
-    padding-bottom: $space-md;
-    color: $footer;
-    font-size: 0.78rem;
-    text-align: center;
   }
+
+  &__base-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-2 $space-4;
+    padding-block: $space-4;
+    border-top: 1px solid rgba($white, 0.1);
+    font-size: 0.875rem;
+  }
+
+  &__legales {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-4;
+  }
+}
+
+// =====================================================
+// BOTÓN FLOTANTE DE WHATSAPP
+// Abajo a la derecha. En celular, mientras se ve el aviso de cookies,
+// sube para no taparlo (cookies.js define --alto-aviso).
+// =====================================================
+
+.wa-flotante {
+  position: fixed;
+  right: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 28px);
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: $whatsapp;
+  color: var(--white);
+  box-shadow: 0 10px 24px rgba($ink, 0.22), 0 2px 6px rgba($ink, 0.12);
+  transition: transform $t $ease, background-color $t ease, box-shadow $t ease;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  &:hover {
+    background: $whatsapp-hover;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 14px 30px rgba($ink, 0.26), 0 2px 6px rgba($ink, 0.12);
+  }
+
+  &:focus-visible {
+    outline-color: var(--ink);
+  }
+
+  @include respond-mobile {
+    .hay-aviso-cookies & {
+      transform: translateY(calc(-1 * (var(--alto-aviso, 0px) + 12px)));
+    }
+  }
+}
+
+// Con el menú móvil abierto el botón flotante no hace falta
+.menu-abierto .wa-flotante {
+  visibility: hidden;
 }

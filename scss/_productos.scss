@@ -2,189 +2,151 @@
 @use 'mixins' as *;
 
 // =====================================================
-// PAGINA DE PRODUCTOS
+// CATÁLOGO — filtros como chips, orden por precio y una grilla fija
 // =====================================================
- 
-.pagina-header {
-  @extend %container;
-  padding-block: $space-xl $space-md;
-  text-align: center;
- 
-  &__eyebrow {
-    @extend %eyebrow;
-    display: block;
-    margin-bottom: $space-xs;
-  }
- 
-  &__title {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    color: $texto1;
-  }
-}
- 
-// Mientras JavaScript arma el catálogo, el contenedor reserva una pantalla
-// de alto: así el footer no aparece arriba y después salta hacia abajo.
-#catalogo-container:empty {
-  min-height: 100vh;
-}
 
-.categoria-seccion {
-  @extend %container;
-  padding-block: $space-md;
-  scroll-margin-top: 90px; // para que el ancla no quede tapada por el header sticky
- 
-  &__title {
-    font-family: $font-display;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: $space-md;
-    padding-bottom: $space-xs;
-    border-bottom: 1px solid $bordes;
-    color: $texto1;
-  }
- 
-  &__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $space-md;
- 
-    @include respond-tablet {
-      grid-template-columns: repeat(2, 1fr);
-    }
- 
-    @include respond-desktop {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-}
- 
-.card-producto {
-  background: $cartas;
-  border: 1px solid $bordes;
-  border-radius: $radius-md;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 4px 14px rgba($acento, 0.15);
-  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+.catalogo {
+  padding-block: $space-5 $space-6; // abajo sigue la franja de contacto, que trae su propio aire
 
-  &:hover {
-    border-color: $brillo;
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba($acento, 0.28);
-
-    .card-producto__cta {
-      color: $brillo;
-      border-color: $brillo;
-    }
-
-    .card-producto__media img {
-      transform: scale(1.05);
-    }
-
-    .card-producto__media::after {
-      opacity: 1;
-    }
+  &__inner {
+    @extend %container;
   }
 
-  &__media {
-    aspect-ratio: 4 / 3;
-    background: $encabezado;
-    @include flex(row, center, center);
-    color: $tcuadros2;
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 40%, rgba($brillo, 0.25), transparent 65%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      padding: 1rem;
-      transition: transform 0.35s ease;
-    }
-  }
-
-  &__body {
-    padding: $space-sm $space-md $space-md;
+  &__barra {
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    flex: 1;
-  }
- 
-  &__title {
-    font-family: $font-display;
-    font-size: 1.05rem;
-    color: $tcuadros1;
-  }
- 
-  &__desc {
-    color: $tcuadros2;
-    font-size: 0.85rem;
-    flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
- 
-  &__footer {
-    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    margin-top: $space-xs;
+    gap: $space-3;
   }
- 
-  &__price {
-    font-family: $font-mono;
-    color: $brillo;
-    font-size: 0.95rem;
+
+  &__conteo {
+    margin-block: $space-4 $space-3;
+    font-size: 0.875rem;
+    color: var(--muted);
   }
- 
-  &__cta {
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: $tcuadros1;
-    text-decoration: none;
-    border-bottom: 1px solid $bordes;
-    padding-bottom: 2px;
-    transition: color 0.2s ease, border-color 0.2s ease;
+
+  // 2 columnas en celular; desde ahí, tarjetas de 260 px como mínimo
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, calc(50% - 6px)), 1fr));
+    gap: $space-2;
+
+    @include respond-tablet {
+      gap: $space-4;
+    }
+  }
+
+  // Reserva lugar mientras JavaScript arma el catálogo, para que el
+  // footer no aparezca arriba y después salte hacia abajo
+  &__grid:empty {
+    min-height: 100vh;
   }
 }
 
-// Cards de productos sin stock (sección "Próximamente")
-.card-producto.sin-stock {
-  .card-producto__media img {
-    opacity: 0.55;
-    filter: grayscale(0.6);
+.filtros {
+  display: flex;
+  gap: $space-1;
+  // En celular los chips se deslizan de costado si no entran
+  max-width: 100%;
+  margin-inline: calc(-1 * #{$gutter});
+  padding: 2px $gutter;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 
-  .card-producto__title {
-    color: $tcuadros2;
+  @include respond-tablet {
+    margin-inline: 0;
+    padding-inline: 0;
+    flex-wrap: wrap;
   }
 
-  .card-producto__price {
-    color: $tcuadros2;
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    flex-shrink: 0;
+    padding: 9px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color $t-fast ease, border-color $t-fast ease, color $t-fast ease;
+
+    &:hover {
+      border-color: var(--brand);
+      color: var(--brand);
+    }
+
+    &[aria-pressed='true'] {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: var(--white);
+    }
   }
 
-  .card-producto__cta {
-    color: $brillo;
-    border-color: rgba($brillo, 0.5);
+  &__cantidad {
+    min-width: 22px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--muted);
+
+    .filtros__chip[aria-pressed='true'] & {
+      background: rgba($white, 0.18);
+      color: var(--white);
+    }
   }
+}
+
+.orden {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+  margin-left: auto;
+
+  &__label {
+    font-size: 0.875rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  &__select {
+    appearance: none;
+    padding: 9px 38px 9px 14px;
+    border: 1px solid var(--line);
+    border-radius: $radius-btn;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d1524' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")
+      right 12px center / 16px no-repeat,
+      var(--white);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--brand);
+    }
+  }
+}
+
+// Sin resultados en un filtro
+.catalogo-vacio {
+  grid-column: 1 / -1;
+  padding: $space-6 $space-3;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--muted);
 }

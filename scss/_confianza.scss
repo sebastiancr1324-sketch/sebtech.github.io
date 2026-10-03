@@ -1,0 +1,58 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// =====================================================
+// BARRA DE CONFIANZA — debajo del hero
+// =====================================================
+
+.confianza {
+  background: var(--surface);
+  border-block: 1px solid var(--line);
+
+  &__grid {
+    @extend %container;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-4 $space-3;
+    padding-block: $space-5;
+
+    @include respond-desktop {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: $space-5;
+      padding-block: $space-6;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    @include respond-tablet {
+      flex-direction: row;
+      align-items: center;
+      gap: $space-3;
+    }
+  }
+
+  &__icono {
+    @include icono-suave(48px, 24px, 50%);
+    background: var(--white);
+    box-shadow: 0 0 0 6px var(--brand-soft);
+  }
+
+  &__title {
+    font-family: $font-body;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.3;
+  }
+
+  &__text {
+    margin-top: 2px;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+}

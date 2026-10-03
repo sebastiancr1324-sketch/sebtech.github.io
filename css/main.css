@@ -111,22 +111,7 @@
   src: url("../fonts/jetbrains-mono-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-.legal__seccion, .cookie-banner__inner, .faq, .valores, .nosotros, .envios, .relacionados, .producto-detail, .categoria-seccion, .pagina-header, .footer__legal, .footer__inner, .destacados, .categorias, .hero, .header__inner, .container {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.relacionados__eyebrow, .pagina-header__eyebrow, .destacados__eyebrow, .categorias__eyebrow, .hero__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
-}
-
-.legal__seccion, .cookie-banner__inner, .faq, .valores, .nosotros, .envios, .relacionados, .producto-detail, .categoria-seccion, .pagina-header, .footer__legal, .footer__inner, .destacados, .categorias, .hero, .header__inner, .container {
+.cookie-banner__inner, .legal__seccion, .faq, .nosotros, .valores, .envios, .producto-detail, .relacionados, .pagina-header, .categoria-seccion, .footer__inner, .footer__legal, .destacados, .categorias, .hero, .header__inner, .container {
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
@@ -267,21 +252,6 @@ h1, h2, h3 {
     transition: none !important;
   }
 }
-.legal__seccion, .cookie-banner__inner, .faq, .valores, .nosotros, .envios, .relacionados, .producto-detail, .categoria-seccion, .pagina-header, .footer__legal, .footer__inner, .destacados, .categorias, .hero, .header__inner, .container {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.relacionados__eyebrow, .pagina-header__eyebrow, .destacados__eyebrow, .categorias__eyebrow, .hero__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
-}
-
 .header {
   position: sticky;
   top: 0;
@@ -387,21 +357,6 @@ h1, h2, h3 {
   }
 }
 
-.legal__seccion, .cookie-banner__inner, .faq, .valores, .nosotros, .envios, .relacionados, .producto-detail, .categoria-seccion, .pagina-header, .footer__legal, .footer__inner, .destacados, .categorias, .hero, .container, .header__inner {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.relacionados__eyebrow, .pagina-header__eyebrow, .destacados__eyebrow, .categorias__eyebrow, .hero__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
-}
-
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
@@ -429,21 +384,6 @@ h1, h2, h3 {
 .breadcrumb__current {
   color: #000000;
   font-weight: 500;
-}
-
-.legal__seccion, .cookie-banner__inner, .faq, .valores, .nosotros, .envios, .relacionados, .producto-detail, .categoria-seccion, .pagina-header, .footer__legal, .footer__inner, .destacados, .categorias, .hero, .container, .header__inner {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.relacionados__eyebrow, .pagina-header__eyebrow, .destacados__eyebrow, .categorias__eyebrow, .hero__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
 }
 
 .hero {
@@ -508,21 +448,6 @@ h1, h2, h3 {
   gap: 0;
 }
 
-.legal__seccion, .cookie-banner__inner, .faq, .valores, .nosotros, .envios, .relacionados, .producto-detail, .categoria-seccion, .pagina-header, .footer__legal, .footer__inner, .destacados, .categorias, .container, .header__inner, .hero {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.relacionados__eyebrow, .pagina-header__eyebrow, .destacados__eyebrow, .categorias__eyebrow, .hero__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
-}
-
 .categorias {
   padding-block: 2rem;
 }
@@ -576,21 +501,6 @@ h1, h2, h3 {
 .card-categoria__text {
   color: #e0e0e0;
   font-size: 0.9rem;
-}
-
-.legal__seccion, .cookie-banner__inner, .faq, .valores, .nosotros, .envios, .relacionados, .producto-detail, .categoria-seccion, .pagina-header, .footer__legal, .footer__inner, .destacados, .container, .header__inner, .hero, .categorias {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.relacionados__eyebrow, .pagina-header__eyebrow, .destacados__eyebrow, .hero__eyebrow, .categorias__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
 }
 
 .destacados {
@@ -799,21 +709,6 @@ h1, h2, h3 {
     transform: translateY(0);
   }
 }
-.legal__seccion, .cookie-banner__inner, .faq, .valores, .nosotros, .envios, .relacionados, .producto-detail, .categoria-seccion, .pagina-header, .footer__legal, .footer__inner, .container, .header__inner, .hero, .categorias, .destacados {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.relacionados__eyebrow, .pagina-header__eyebrow, .hero__eyebrow, .categorias__eyebrow, .destacados__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
-}
-
 .footer {
   border-top: 1px solid #223051;
   background: #0d1524;
@@ -1140,21 +1035,6 @@ h1, h2, h3 {
   border-color: rgba(124, 232, 255, 0.5);
 }
 
-.legal__seccion, .cookie-banner__inner, .faq, .valores, .nosotros, .envios, .relacionados, .producto-detail, .container, .header__inner, .hero, .categorias, .destacados, .footer__inner, .footer__legal, .pagina-header, .categoria-seccion {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.relacionados__eyebrow, .hero__eyebrow, .categorias__eyebrow, .destacados__eyebrow, .pagina-header__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
-}
-
 .producto-detail {
   padding-block: 2rem;
 }
@@ -1423,21 +1303,6 @@ h1, h2, h3 {
   }
 }
 
-.legal__seccion, .cookie-banner__inner, .faq, .valores, .nosotros, .envios, .container, .header__inner, .hero, .categorias, .destacados, .footer__inner, .footer__legal, .pagina-header, .categoria-seccion, .producto-detail, .relacionados {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.hero__eyebrow, .categorias__eyebrow, .destacados__eyebrow, .pagina-header__eyebrow, .relacionados__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
-}
-
 @keyframes envios-fade-up {
   from {
     opacity: 0;
@@ -1607,7 +1472,6 @@ h1, h2, h3 {
 
 .faq {
   padding-block: 2rem;
-  max-width: 800px;
 }
 .faq__title {
   color: #000000;
@@ -1655,21 +1519,6 @@ h1, h2, h3 {
   color: #e0e0e0;
   font-size: 0.92rem;
   line-height: 1.6;
-}
-
-.legal__seccion, .cookie-banner__inner, .container, .header__inner, .hero, .categorias, .destacados, .footer__inner, .footer__legal, .pagina-header, .categoria-seccion, .producto-detail, .relacionados, .envios, .nosotros, .valores, .faq {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.hero__eyebrow, .categorias__eyebrow, .destacados__eyebrow, .pagina-header__eyebrow, .relacionados__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
 }
 
 .cookie-banner {
@@ -1755,19 +1604,4 @@ h1, h2, h3 {
   font-size: 0.8rem;
   color: #000000;
   opacity: 0.8;
-}
-
-.container, .header__inner, .hero, .categorias, .destacados, .footer__inner, .footer__legal, .pagina-header, .categoria-seccion, .producto-detail, .relacionados, .envios, .nosotros, .valores, .faq, .cookie-banner__inner, .legal__seccion {
-  width: 100%;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-.hero__eyebrow, .categorias__eyebrow, .destacados__eyebrow, .pagina-header__eyebrow, .relacionados__eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0b3d9b;
 }

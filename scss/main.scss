@@ -1,22 +1,21 @@
 // =====================================================
 // MAIN — SebTech
-// Archivo principal: importa todos los partials en orden
+// Archivo principal: carga todos los partials en orden con @use
+// (variables y mixins los carga cada partial que los necesita)
 // =====================================================
 
-@import 'variables';
-@import 'mixins';
-@import 'base';
-@import 'header';
-@import 'breadcrumb';
-@import 'hero';
-@import 'categorias';
-@import 'destacados';
-@import 'footer';
-@import 'productos';
-@import 'producto';
-@import 'envios';
-@import 'nosotros';
-@import 'contacto';
-@import 'faq';
-@import 'cookies';
-@import 'animaciones';
+@use 'fuentes';
+@use 'base';
+@use 'header';
+@use 'breadcrumb';
+@use 'hero';
+@use 'categorias';
+@use 'destacados';
+@use 'footer';
+@use 'productos';
+@use 'producto';
+@use 'envios';
+@use 'nosotros';
+@use 'faq';
+@use 'cookies';
+@use 'animaciones';

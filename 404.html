@@ -5,27 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Página no encontrada | SebTech</title>
   <meta name="description" content="La página que buscás no existe o fue movida. Volvé al inicio de SebTech.">
-  <link rel="icon" type="image/png" href="img/LogoSebtechMinimalita.png">
-  <link rel="stylesheet" href="css/main.css">
+  <meta name="robots" content="noindex">
+  <script>
+    // Si se agregó un producto y todavía no se corrió `npm run build`, su
+    // página fija no existe: se redirige a la ficha dinámica del producto.
+    (function() {
+      var m = location.pathname.match(/\/pages\/producto-([a-z0-9-]+)\.html$/);
+      if (m) location.replace('/sebtech.github.io/pages/producto.html?id=' + m[1]);
+    })();
+  </script>
+  <meta name="theme-color" content="#0b3d9b">
+  <!-- GitHub Pages sirve este archivo en cualquier ruta que no exista (incluso
+       dentro de /pages/...), por eso todas las rutas son absolutas. -->
+  <link rel="icon" type="image/png" sizes="64x64" href="/sebtech.github.io/img/favicon.png">
+  <link rel="apple-touch-icon" href="/sebtech.github.io/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/sebtech.github.io/css/main.css">
 </head>
 <body>
+  <!-- parte:header (se genera desde partials/header.html con npm run build) -->
   <header class="header">
     <div class="header__inner">
-      <a href="index.html" class="header__logo"><img src="img/LogoSebtechMinimalita.png" alt="Logo SebTech" class="header__logo-img"><span>Seb<span class="header__logo-accent">Tech</span></span></a>
+      <a href="/sebtech.github.io/" class="header__logo"><img src="/sebtech.github.io/img/LogoSebtechMinimalita.webp" alt="Logo SebTech" class="header__logo-img" width="32" height="32"><span>Seb<span class="header__logo-accent">Tech</span></span></a>
 
-      <button class="header__toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <button type="button" class="header__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal">☰</button>
 
-      <nav class="header__nav" aria-label="Navegación principal">
+      <nav class="header__nav" id="menu-principal" aria-label="Navegación principal">
         <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="pages/productos.html">Productos</a></li>
-          <li><a href="pages/envios.html">Envíos</a></li>
-          <li><a href="pages/nosotros.html">Nosotros</a></li>
-          <li><a href="pages/faq.html">FAQ</a></li>
+          <li><a href="/sebtech.github.io/">Inicio</a></li>
+          <li><a href="/sebtech.github.io/pages/productos.html">Productos</a></li>
+          <li><a href="/sebtech.github.io/pages/envios.html">Envíos</a></li>
+          <li><a href="/sebtech.github.io/pages/nosotros.html">Nosotros</a></li>
+          <li><a href="/sebtech.github.io/pages/faq.html">FAQ</a></li>
         </ul>
       </nav>
     </div>
   </header>
+  <!-- /parte:header -->
 
   <main>
     <div class="pagina-header">
@@ -33,13 +48,14 @@
       <h1 class="pagina-header__title">Página no encontrada</h1>
     </div>
 
-    <div class="404-contenido" style="max-width:640px;margin:0 auto;padding:0 1.5rem 4rem;text-align:center;">
-      <p style="color:#58a6ff;font-size:1.15rem;margin-bottom:1rem;">La página que buscás no existe o fue movida.</p>
+    <div class="pagina-404" style="max-width:640px;margin:0 auto;padding:0 1.5rem 4rem;text-align:center;">
+      <p style="color:#0b3d9b;font-size:1.15rem;margin-bottom:1rem;">La página que buscás no existe o fue movida.</p>
       <p style="margin-bottom:2rem;">Podés volver al inicio y seguir explorando el catálogo de SebTech.</p>
-      <a href="index.html" class="btn btn--primary">Volver al inicio</a>
+      <a href="/sebtech.github.io/" class="btn btn--primary">Volver al inicio</a>
     </div>
   </main>
 
+  <!-- parte:footer (se genera desde partials/footer.html con npm run build) -->
   <footer class="footer">
     <div class="footer__inner">
       <div>
@@ -48,9 +64,9 @@
       </div>
 
       <div class="footer__contacto">
-        <h3 class="footer__contacto-title">Contacto</h3>
+        <h2 class="footer__contacto-title">Contacto</h2>
         <div class="footer__contacto-fila">
-          <a href="https://wa.me/message/NDPQOF3UHLIQF1" class="footer__wa" target="_blank" rel="noopener">
+          <a href="https://wa.me/message/NDPQOF3UHLIQF1" class="footer__wa" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>
             WhatsApp
           </a>
@@ -60,28 +76,30 @@
       </div>
 
       <div class="footer__social">
-        <a href="https://instagram.com/sebtech.ar" target="_blank" rel="noopener" aria-label="Instagram de SebTech">
+        <a href="https://instagram.com/sebtech.ar" target="_blank" rel="noopener noreferrer" aria-label="Instagram de SebTech">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </a>
-        <a href="https://wa.me/message/NDPQOF3UHLIQF1" target="_blank" rel="noopener" aria-label="WhatsApp de SebTech">
+        <a href="https://wa.me/message/NDPQOF3UHLIQF1" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de SebTech">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>
         </a>
       </div>
     </div>
-    <p class="footer__legal">© 2026 SebTech. Todos los derechos reservados. · <a href="pages/privacy.html">Privacidad</a> · <a href="pages/terms.html">Términos</a> · <a href="pages/cookies.html">Cookies</a></p>
+    <p class="footer__legal">© <span data-anio-actual>2026</span> SebTech. Todos los derechos reservados. · <a href="/sebtech.github.io/pages/privacy.html">Privacidad</a> · <a href="/sebtech.github.io/pages/terms.html">Términos</a> · <a href="/sebtech.github.io/pages/cookies.html">Cookies</a></p>
   </footer>
+  <!-- /parte:footer -->
 
-  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite">
+  <!-- parte:aviso-cookies (se genera desde partials/aviso-cookies.html con npm run build) -->
+  <section class="cookie-banner" id="cookie-banner" aria-label="Aviso sobre cookies" hidden>
     <div class="cookie-banner__inner">
-      <p class="cookie-banner__text">Usamos cookies para mejorar tu experiencia de navegación. Podés leer nuestra <a href="pages/cookies.html">Política de Cookies</a> y <a href="pages/privacy.html">Política de Privacidad</a> antes de decidir.</p>
+      <p class="cookie-banner__text">Este sitio no usa cookies de seguimiento ni de publicidad. Solo recordamos en tu navegador que ya viste este aviso. Más información en nuestra <a href="/sebtech.github.io/pages/cookies.html">Política de Cookies</a> y <a href="/sebtech.github.io/pages/privacy.html">Política de Privacidad</a>.</p>
       <div class="cookie-banner__acciones">
-        <button type="button" class="btn btn--primary" data-cookie="aceptar">Aceptar</button>
-        <button type="button" class="btn btn--ghost" data-cookie="rechazar">Rechazar</button>
+        <button type="button" class="btn btn--claro" data-cookie="entendido">Entendido</button>
       </div>
     </div>
-  </div>
+  </section>
+  <!-- /parte:aviso-cookies -->
 
-  <script src="js/main.js"></script>
-  <script src="js/cookies.js"></script>
+  <script src="/sebtech.github.io/js/main.js"></script>
+  <script src="/sebtech.github.io/js/cookies.js"></script>
 </body>
 </html>

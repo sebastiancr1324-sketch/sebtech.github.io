@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
 // =====================================================
 // PAGINA FAQ
 // =====================================================
@@ -5,7 +8,6 @@
 .faq {
   @extend %container;
   padding-block: $space-md;
-  max-width: 800px;
 
   &__title {
     color: $texto1;

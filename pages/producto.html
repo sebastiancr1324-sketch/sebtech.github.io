@@ -5,24 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Producto | SebTech</title>
   <meta name="description" content="Detalle del producto en SebTech">
-  <link rel="icon" type="image/png" href="../img/LogoSebtechMinimalita.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../img/favicon.png">
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
   <meta property="og:title" content="Producto | SebTech">
   <meta property="og:description" content="Detalle del producto en SebTech">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="../img/LogoSebtechMinimalita.png">
+  <meta property="og:url" content="https://sebastiancr1324-sketch.github.io/sebtech.github.io/pages/producto.html">
+  <meta property="og:image" content="https://sebastiancr1324-sketch.github.io/sebtech.github.io/img/og-sebtech.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SebTech: celulares, tablets y accesorios con envíos a todo CABA">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="SebTech">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://sebastiancr1324-sketch.github.io/sebtech.github.io/pages/producto.html">
+  <meta name="theme-color" content="#0b3d9b">
   <link rel="stylesheet" href="../css/main.css">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/vendor/aos.css">
+  <noscript><style>[data-requiere-js] { display: none; }</style></noscript>
 </head>
 <body>
 
+  <!-- parte:header (se genera desde partials/header.html con npm run build) -->
   <header class="header">
     <div class="header__inner">
-      <a href="../index.html" class="header__logo"><img src="../img/LogoSebtechMinimalita.png" alt="Logo SebTech" class="header__logo-img"><span>Seb<span class="header__logo-accent">Tech</span></span></a>
-      <button class="header__toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-      <nav class="header__nav" aria-label="Navegación principal">
+      <a href="../index.html" class="header__logo"><img src="../img/LogoSebtechMinimalita.webp" alt="Logo SebTech" class="header__logo-img" width="32" height="32"><span>Seb<span class="header__logo-accent">Tech</span></span></a>
+
+      <button type="button" class="header__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal">☰</button>
+
+      <nav class="header__nav" id="menu-principal" aria-label="Navegación principal">
         <ul>
           <li><a href="../index.html">Inicio</a></li>
           <li><a href="productos.html" aria-current="page">Productos</a></li>
@@ -33,10 +44,14 @@
       </nav>
     </div>
   </header>
+  <!-- /parte:header -->
 
   <main>
     <div class="producto-detail" id="producto-contenido">
-      <p class="producto-detail__loading">Cargando producto...</p>
+      <p class="producto-detail__loading" data-requiere-js>Cargando producto...</p>
+      <noscript>
+        <p class="aviso-sin-js">Para ver este producto necesitás tener JavaScript activado en tu navegador. También podés consultarnos por <a href="https://wa.me/message/NDPQOF3UHLIQF1" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
+      </noscript>
     </div>
 
     <section class="relacionados" id="producto-relacionados" aria-labelledby="relacionados-title" hidden>
@@ -48,16 +63,18 @@
     </section>
   </main>
 
+  <!-- parte:footer (se genera desde partials/footer.html con npm run build) -->
   <footer class="footer">
     <div class="footer__inner">
       <div>
-        <p class="footer__brand">Seb<span class="header__logo-accent">Tech</span></p>
+        <p class="footer__brand">Seb<span>Tech</span></p>
         <p class="footer__tagline">Tecnología para tu día</p>
       </div>
+
       <div class="footer__contacto">
-        <h3 class="footer__contacto-title">Contacto</h3>
+        <h2 class="footer__contacto-title">Contacto</h2>
         <div class="footer__contacto-fila">
-          <a href="https://wa.me/message/NDPQOF3UHLIQF1" class="footer__wa" target="_blank" rel="noopener">
+          <a href="https://wa.me/message/NDPQOF3UHLIQF1" class="footer__wa" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>
             WhatsApp
           </a>
@@ -67,39 +84,104 @@
       </div>
 
       <div class="footer__social">
-        <a href="https://instagram.com/sebtech.ar" target="_blank" rel="noopener" aria-label="Instagram de SebTech">
+        <a href="https://instagram.com/sebtech.ar" target="_blank" rel="noopener noreferrer" aria-label="Instagram de SebTech">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </a>
-        <a href="https://wa.me/message/NDPQOF3UHLIQF1" target="_blank" rel="noopener" aria-label="WhatsApp de SebTech">
+        <a href="https://wa.me/message/NDPQOF3UHLIQF1" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de SebTech">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>
         </a>
       </div>
     </div>
-    <p class="footer__legal">© 2026 SebTech. Todos los derechos reservados. · <a href="privacy.html">Privacidad</a> · <a href="terms.html">Términos</a> · <a href="cookies.html">Cookies</a></p>
+    <p class="footer__legal">© <span data-anio-actual>2026</span> SebTech. Todos los derechos reservados. · <a href="privacy.html">Privacidad</a> · <a href="terms.html">Términos</a> · <a href="cookies.html">Cookies</a></p>
   </footer>
+  <!-- /parte:footer -->
 
-  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite">
+  <!-- parte:aviso-cookies (se genera desde partials/aviso-cookies.html con npm run build) -->
+  <section class="cookie-banner" id="cookie-banner" aria-label="Aviso sobre cookies" hidden>
     <div class="cookie-banner__inner">
-      <p class="cookie-banner__text">Usamos cookies para mejorar tu experiencia de navegación. Podés leer nuestra <a href="cookies.html">Política de Cookies</a> y <a href="privacy.html">Política de Privacidad</a> antes de decidir.</p>
+      <p class="cookie-banner__text">Este sitio no usa cookies de seguimiento ni de publicidad. Solo recordamos en tu navegador que ya viste este aviso. Más información en nuestra <a href="cookies.html">Política de Cookies</a> y <a href="privacy.html">Política de Privacidad</a>.</p>
       <div class="cookie-banner__acciones">
-        <button type="button" class="btn btn--primary" data-cookie="aceptar">Aceptar</button>
-        <button type="button" class="btn btn--ghost" data-cookie="rechazar">Rechazar</button>
+        <button type="button" class="btn btn--claro" data-cookie="entendido">Entendido</button>
       </div>
     </div>
-  </div>
+  </section>
+  <!-- /parte:aviso-cookies -->
 
   <script src="../js/products.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/cookies.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    // Número de WhatsApp para los botones de consulta de cada producto. Los
+    // links cortos wa.me/message/... ignoran ?text=, por eso acá se usa el
+    // número: así el mensaje llega con el nombre del producto.
+    var WHATSAPP_NUMERO = '5491172389052';
+
+    // Cada producto tiene su página fija pages/producto-<id>.html, generada con
+    // `npm run build` (scripts/generar-paginas.js) a partir de este archivo,
+    // con título, descripción, vista previa y datos estructurados ya escritos
+    // en el HTML (WhatsApp y las redes no ejecutan JavaScript).
+    // producto.html?id=<id> sigue funcionando como ficha dinámica.
+    function urlFicha(id) {
+      return new URL('producto-' + encodeURIComponent(id) + '.html', location.href).href;
+    }
+
+    // Solo para producto.html?id=: completa los metadatos con JavaScript.
+    // Las páginas fijas ya los traen escritos.
+    function actualizarMetadatos(producto) {
+      var urlProducto = urlFicha(producto.id);
+      var descripcion = producto.descripcion.length > 155 ? producto.descripcion.slice(0, 152).replace(/\s+\S*$/, '') + '...' : producto.descripcion;
+      var fijar = function(selector, valor) {
+        var el = document.querySelector(selector);
+        if (el) el.setAttribute(el.tagName === 'LINK' ? 'href' : 'content', valor);
+      };
+      fijar('meta[name="description"]', descripcion);
+      fijar('meta[property="og:title"]', document.title);
+      fijar('meta[property="og:description"]', descripcion);
+      fijar('meta[property="og:url"]', urlProducto);
+      fijar('link[rel="canonical"]', urlProducto);
+
+      var imagenes = (producto.imagenes || [producto.imagen]).filter(Boolean).map(function(img) {
+        return new URL(rutaImg(img), location.href).href;
+      });
+      var datos = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: producto.nombre,
+        description: producto.descripcion,
+        image: imagenes,
+        category: producto.categoria,
+        url: urlProducto
+      };
+      if (producto.precio !== null) {
+        datos.offers = {
+          '@type': 'Offer',
+          price: producto.precio,
+          priceCurrency: 'ARS',
+          availability: estaSinStock(producto) ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+          url: urlProducto
+        };
+      }
+      var script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(datos);
+      document.head.appendChild(script);
+    }
+
+    // Se ejecuta apenas se lee (el contenedor ya existe más arriba), sin esperar
+    // a DOMContentLoaded, para que el producto aparezca en el primer pintado.
+    (function() {
       var params = new URLSearchParams(window.location.search);
-      var id = params.get('id');
       var contenedor = document.getElementById('producto-contenido');
+      var esPaginaFija = contenedor.hasAttribute('data-producto-id');
+      var id = esPaginaFija ? contenedor.getAttribute('data-producto-id') : params.get('id');
 
       var producto = id ? obtenerProductoPorId(id) : null;
 
       if (!producto) {
+        var noIndexar = document.createElement('meta');
+        noIndexar.name = 'robots';
+        noIndexar.content = 'noindex';
+        document.head.appendChild(noIndexar);
         contenedor.innerHTML =
           '<div class="producto-detail__notfound">' +
             '<p class="producto-detail__notfound-code">404</p>' +
@@ -112,7 +194,10 @@
         return;
       }
 
-      document.title = producto.nombre + ' | SebTech';
+      if (!esPaginaFija) {
+        document.title = producto.nombre + ' | SebTech';
+        actualizarMetadatos(producto);
+      }
 
       var specsHtml = '';
       if (producto.especificaciones && producto.especificaciones.length > 0) {
@@ -144,14 +229,14 @@
       if (esSinStock) {
         stockHtml = '<p class="producto-detail__stock producto-detail__stock--sin">Sin stock</p>';
       } else {
-        stockHtml = '<p class="producto-detail__stock producto-detail__stock--con">Stock disponible: ' + producto.stock + ' unidades</p>';
+        stockHtml = '<p class="producto-detail__stock producto-detail__stock--con">Stock disponible: ' + producto.stock + (producto.stock === 1 ? ' unidad' : ' unidades') + '</p>';
       }
 
       var accionesHtml =
         '<div class="producto-detail__actions">' +
-          '<a href="https://wa.me/message/NDPQOF3UHLIQF1?text=' + encodeURIComponent((esSinStock ?
+          '<a href="https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent((esSinStock ?
             'Hola! Quiero consultar cuándo va a estar disponible el ' + producto.nombre :
-            'Hola! Quiero consultar por el ' + producto.nombre)) + '" class="btn btn--primary" target="_blank" rel="noopener">' +
+            'Hola! Quiero consultar por el ' + producto.nombre)) + '" class="btn btn--primary" target="_blank" rel="noopener noreferrer">' +
           (esSinStock ? 'Preguntar por disponibilidad' : 'Consultar por WhatsApp') +
           '</a>' +
         '</div>';
@@ -170,7 +255,7 @@
         '</nav>' +
         '<div class="producto-detail__grid">' +
           '<div class="producto-detail__gallery">' +
-            '<img src="' + imgPrincipal + '" alt="' + producto.nombre + '" class="producto-detail__img" id="producto-img-principal">' +
+            '<img src="' + imgPrincipal + '" alt="' + producto.nombre + '" class="producto-detail__img" id="producto-img-principal" fetchpriority="high">' +
             thumbsHtml +
           '</div>' +
           '<div class="producto-detail__info">' +
@@ -179,13 +264,13 @@
             '<p class="producto-detail__price">' + formatearPrecio(producto.precio) + '</p>' +
             stockHtml +
             '<p class="producto-detail__desc">' + producto.descripcion + '</p>' +
-            (specsHtml ? '<div class="producto-detail__specs-section"><h3>Especificaciones</h3>' + specsHtml + '</div>' : '') +
+            (specsHtml ? '<div class="producto-detail__specs-section"><h2>Especificaciones</h2>' + specsHtml + '</div>' : '') +
             disponibilidadHtml +
             accionesHtml +
             '<div class="producto-detail__share">' +
               '<p class="producto-detail__share-label">Compartir</p>' +
               '<div class="producto-detail__share-buttons">' +
-                '<a href="#" class="producto-detail__share-btn" id="btn-share-wa" target="_blank" rel="noopener">' +
+                '<a href="#" class="producto-detail__share-btn" id="btn-share-wa" target="_blank" rel="noopener noreferrer">' +
                   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>WhatsApp</a>' +
                 '<button type="button" class="producto-detail__share-btn" id="btn-share-copiar">' +
                   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>Copiar enlace</button>' +
@@ -211,7 +296,7 @@
         thumbs[0].classList.add('is-active');
       }
 
-      var urlCompleta = window.location.href;
+      var urlCompleta = urlFicha(producto.id);
       var textoCompartido = "Mirá este producto en SebTech: " + producto.nombre;
 
       var btnWa = document.getElementById('btn-share-wa');
@@ -258,9 +343,9 @@
           var htmlRelacionados = '';
           for (var r = 0; r < relacionados.length; r++) {
             var rel = relacionados[r];
-            htmlRelacionados += '<a href="producto.html?id=' + rel.id + '" class="card-producto card-producto--mini">';
+            htmlRelacionados += '<a href="producto-' + rel.id + '.html" class="card-producto card-producto--mini">';
             htmlRelacionados += '<div class="card-producto__media">';
-            htmlRelacionados += '<img src="' + obtenerImagenPrincipal(rel) + '" alt="' + rel.nombre + '">';
+            htmlRelacionados += '<img src="' + obtenerImagenPrincipal(rel) + '" alt="' + rel.nombre + '" loading="lazy" decoding="async">';
             htmlRelacionados += '</div>';
             htmlRelacionados += '<div class="card-producto__body">';
             htmlRelacionados += '<h3 class="card-producto__title">' + rel.nombre + '</h3>';
@@ -276,10 +361,10 @@
           seccionRelacionados.hidden = false;
         }
       }
-    });
+    })();
   </script>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/vendor/aos.js"></script>
   <script src="../js/aos-config.js"></script>
 </body>
 </html>

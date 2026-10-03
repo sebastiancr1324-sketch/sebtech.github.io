@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 // =====================================================
 // PAGINA INDIVIDUAL DE PRODUCTO
@@ -111,7 +111,7 @@
     border-radius: $radius-sm;
 
     &--con {
-      color: #1e8e3e;
+      color: #17762f;
       background: rgba(30, 142, 62, 0.1);
       border: 1px solid rgba(30, 142, 62, 0.3);
     }
@@ -147,7 +147,7 @@
   &__specs-section {
     margin-top: $space-sm;
 
-    h3 {
+    h2 {
       font-family: $font-display;
       font-size: 1rem;
       font-weight: 600;
@@ -231,6 +231,11 @@
       border-color: $acento;
       color: $acento;
     }
+  }
+
+  // Reserva una pantalla de alto mientras carga, para que el footer no salte
+  &__loading {
+    min-height: 100vh;
   }
 
   &__loading,

@@ -1,0 +1,17 @@
+  <header class="header">
+    <div class="header__inner">
+      <a href="{{inicio}}" class="header__logo"><img src="{{raiz}}img/LogoSebtechMinimalita.webp" alt="Logo SebTech" class="header__logo-img" width="32" height="32"><span>Seb<span class="header__logo-accent">Tech</span></span></a>
+
+      <button type="button" class="header__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal">☰</button>
+
+      <nav class="header__nav" id="menu-principal" aria-label="Navegación principal">
+        <ul>
+          <li><a href="{{inicio}}"{{actual:inicio}}>Inicio</a></li>
+          <li><a href="{{paginas}}productos.html"{{actual:productos}}>Productos</a></li>
+          <li><a href="{{paginas}}envios.html"{{actual:envios}}>Envíos</a></li>
+          <li><a href="{{paginas}}nosotros.html"{{actual:nosotros}}>Nosotros</a></li>
+          <li><a href="{{paginas}}faq.html"{{actual:faq}}>FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>

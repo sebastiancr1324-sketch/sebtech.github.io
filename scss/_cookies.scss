@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 // =====================================================
 // BANNER DE COOKIES
@@ -22,10 +22,6 @@
     transform: translateY(0);
   }
 
-  &.is-hidden {
-    transform: translateY(100%);
-  }
-
   &__inner {
     @extend %container;
     display: flex;
@@ -43,7 +39,7 @@
 
   &__text {
     font-size: 0.9rem;
-    color: $texto2;
+    color: $tcuadros1;
     max-width: 70ch;
 
     a {
@@ -100,7 +96,7 @@
     }
 
     a {
-      color: $brillo;
+      color: $acento;
       text-decoration: underline;
     }
 

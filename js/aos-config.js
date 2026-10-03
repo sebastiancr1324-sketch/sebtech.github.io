@@ -13,8 +13,6 @@ var AOS_ELEMENTOS = {
   '.envios-nota':         { efecto: 'fade-up', delay: 150 },
   '.card-valor':          { efecto: 'zoom-in', delay: 0 },
   '.nosotros__text':      { efecto: 'fade-right', delay: 0 },
-  '.contacto-directo__item': { efecto: 'fade-right', delay: 0 },
-  '.form-contacto':       { efecto: 'fade-left', delay: 100 },
   '.producto-detail__gallery': { efecto: 'fade-right', delay: 0 },
   '.producto-detail__info': { efecto: 'fade-left', delay: 150 }
 };

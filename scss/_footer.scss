@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 // =====================================================
 // FOOTER
@@ -28,7 +28,7 @@
     color: $logofooter;
 
     span {
-      color: $acento;
+      color: $brillo;
     }
   }
 
@@ -63,7 +63,7 @@
   &__contacto-title {
     font-family: $font-display;
     font-size: 0.9rem;
-    color: $acento;
+    color: $brillo;
     margin-bottom: $space-xs;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -119,7 +119,7 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     text-decoration: none;
-    color: #ffffff;
+    color: $encabezado; // texto oscuro: el blanco sobre este verde no se lee bien
     background: #25D366; // Verde oficial de WhatsApp
     border: 1px solid #25D366;
     border-radius: $radius-sm;
@@ -133,9 +133,9 @@
     }
 
     &:hover {
-      color: #ffffff;
-      background: #128C7E; // Verde oscuro de WhatsApp para hover
-      border-color: #128C7E;
+      color: $encabezado;
+      background: #1ebe5d; // Verde un poco más oscuro para hover
+      border-color: #1ebe5d;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
     }

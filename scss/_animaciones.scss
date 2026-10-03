@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 // =====================================================
 // ANIMACIONES — ajustes de animaciones de scroll (AOS)
@@ -8,12 +8,6 @@
 // Los efectos principales (fade-up, zoom-in, etc.) los provee
 // la librería AOS vía su hoja de estilos (aos.css).
 // Acá dejamos espacio para personalizar y afinarlos desde SASS.
-
-// Duración y easing globales de las animaciones AOS
-[data-aos] {
-  // Evita un salto visual antes de que AOS cargue
-  will-change: transform, opacity;
-}
 
 // Ajuste fino si alguna animación necesita retoque visual
 // Por ejemplo, dar un poco más de recorrido vertical al fade-up:

@@ -1,0 +1,15 @@
+{
+  "name": "sebtech",
+  "private": true,
+  "description": "Sitio de SebTech. `npm run build` compila scss/ a css/main.css y genera las partes compartidas de las páginas desde partials/.",
+  "scripts": {
+    "build": "npm run build:css && npm run build:paginas",
+    "build:css": "sass --no-source-map scss/main.scss css/main.css",
+    "build:paginas": "node scripts/generar-paginas.js",
+    "watch": "sass --no-source-map --watch scss/main.scss css/main.css"
+  },
+  "devDependencies": {
+    "sass": "^1.93.0",
+    "sharp": "^0.34.5"
+  }
+}

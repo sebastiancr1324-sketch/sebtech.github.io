@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
 // =====================================================
 // PAGINA DE PRODUCTOS
 // =====================================================
@@ -19,6 +22,12 @@
   }
 }
  
+// Mientras JavaScript arma el catálogo, el contenedor reserva una pantalla
+// de alto: así el footer no aparece arriba y después salta hacia abajo.
+#catalogo-container:empty {
+  min-height: 100vh;
+}
+
 .categoria-seccion {
   @extend %container;
   padding-block: $space-md;
@@ -175,7 +184,7 @@
   }
 
   .card-producto__cta {
-    color: $acento;
-    border-color: rgba($acento, 0.5);
+    color: $brillo;
+    border-color: rgba($brillo, 0.5);
   }
 }

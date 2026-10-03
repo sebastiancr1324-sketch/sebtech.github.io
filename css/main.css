@@ -455,10 +455,10 @@ h1, h2, h3 {
   box-shadow: 0 12px 28px rgba(11, 61, 155, 0.28);
 }
 .card-categoria:hover .card-categoria__icon {
-  color: #000000;
+  color: #f0f0f0;
 }
 .card-categoria__icon {
-  color: #000000;
+  color: #7ce8ff;
   margin-bottom: 1rem;
   transition: color 0.25s ease;
 }
@@ -472,7 +472,7 @@ h1, h2, h3 {
   margin-bottom: 0.5rem;
 }
 .card-categoria__text {
-  color: #000000;
+  color: #e0e0e0;
   font-size: 0.9rem;
 }
 
@@ -734,7 +734,7 @@ h1, h2, h3 {
   color: #ffffff;
 }
 .footer__brand span {
-  color: #0b3d9b;
+  color: #7ce8ff;
 }
 .footer__tagline {
   color: #f0f0f0;
@@ -765,7 +765,7 @@ h1, h2, h3 {
 .footer__contacto-title {
   font-family: "Chakra Petch", sans-serif;
   font-size: 0.9rem;
-  color: #0b3d9b;
+  color: #7ce8ff;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -823,7 +823,7 @@ h1, h2, h3 {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   text-decoration: none;
-  color: #ffffff;
+  color: #0d1524;
   background: #25D366;
   border: 1px solid #25D366;
   border-radius: 6px;
@@ -836,9 +836,9 @@ h1, h2, h3 {
   flex-shrink: 0;
 }
 .footer__wa:hover {
-  color: #ffffff;
-  background: #128C7E;
-  border-color: #128C7E;
+  color: #0d1524;
+  background: #1ebe5d;
+  border-color: #1ebe5d;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
 }
@@ -1022,8 +1022,8 @@ h1, h2, h3 {
   color: #e0e0e0;
 }
 .card-producto.sin-stock .card-producto__cta {
-  color: #0b3d9b;
-  border-color: rgba(11, 61, 155, 0.5);
+  color: #7ce8ff;
+  border-color: rgba(124, 232, 255, 0.5);
 }
 
 .legal__seccion, .cookie-banner__inner, .faq, .contacto, .valores, .nosotros, .envios, .relacionados, .producto-detail, .container, .header__inner, .hero, .categorias, .destacados, .footer__inner, .footer__legal, .pagina-header, .categoria-seccion {
@@ -1135,7 +1135,7 @@ h1, h2, h3 {
   border-radius: 6px;
 }
 .producto-detail__stock--con {
-  color: #1e8e3e;
+  color: #17762f;
   background: rgba(30, 142, 62, 0.1);
   border: 1px solid rgba(30, 142, 62, 0.3);
 }
@@ -1470,7 +1470,7 @@ h1, h2, h3 {
   border-color: #7ce8ff;
 }
 .card-valor__icon {
-  color: #000000;
+  color: #7ce8ff;
   margin-bottom: 1rem;
 }
 .card-valor__icon svg {
@@ -1690,7 +1690,7 @@ h1, h2, h3 {
 }
 .cookie-banner__text {
   font-size: 0.9rem;
-  color: #000000;
+  color: #f0f0f0;
   max-width: 70ch;
 }
 .cookie-banner__text a {
@@ -1733,7 +1733,7 @@ h1, h2, h3 {
   margin-bottom: 1rem;
 }
 .legal__bloque a {
-  color: #7ce8ff;
+  color: #0b3d9b;
   text-decoration: underline;
 }
 .legal__bloque .legal__fecha {

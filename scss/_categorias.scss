@@ -45,12 +45,12 @@
     box-shadow: 0 12px 28px rgba($acento, 0.28);
 
     .card-categoria__icon {
-      color: $logoscartas;
+      color: $tcuadros1;
     }
   }
 
   &__icon {
-    color: $texto2;
+    color: $brillo;
     margin-bottom: $space-sm;
     transition: color 0.25s ease;
 
@@ -67,7 +67,7 @@
   }
 
   &__text {
-    color: $texto2;
+    color: $tcuadros2;
     font-size: 0.9rem;
   }
 }

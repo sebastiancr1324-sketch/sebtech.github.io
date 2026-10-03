@@ -1,0 +1,40 @@
+@use 'variables' as *;
+
+// =====================================================
+// TOKENS — variables CSS del sistema de diseño
+//
+// Reglas de uso:
+// - La página es mayormente blanca / gris muy claro. El azul (--brand)
+//   es para acciones: botones, links y precios, no para rellenar bloques.
+// - Sobre --brand el texto va en blanco, nunca en negro.
+// - El cian (--accent) va SOLO sobre --ink o --brand: sobre blanco no se ve.
+// - --ink como fondo: un solo bloque oscuro por página (el footer).
+// =====================================================
+
+:root {
+  // Marca
+  --brand: #{$brand};
+  --brand-hover: #{$brand-hover};
+  --brand-soft: #{$brand-soft};
+  --accent: #{$accent};
+  --ink: #{$ink};
+  --ink-2: #{$ink-2};
+
+  // Neutros
+  --text: #{$text};
+  --muted: #{$muted};
+  --line: #{$line};
+  --surface: #{$surface};
+  --white: #{$white};
+
+  // Forma
+  --radius-sm: #{$radius-sm};
+  --radius: #{$radius};
+  --radius-lg: #{$radius-lg};
+  --shadow-sm: 0 1px 2px #{rgba($ink, 0.06)};
+  --shadow: 0 8px 24px #{rgba($ink, 0.08)};
+  --shadow-lg: 0 16px 40px #{rgba($brand, 0.14)};
+
+  // Alto del header sticky (lo usan el menú móvil y los anclas)
+  --alto-header: 68px;
+}

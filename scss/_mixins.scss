@@ -4,14 +4,6 @@
 // MIXINS
 // =====================================================
 
-@mixin flex($direction: row, $align: center, $justify: center, $gap: 0) {
-  display: flex;
-  flex-direction: $direction;
-  align-items: $align;
-  justify-content: $justify;
-  gap: $gap;
-}
-
 @mixin respond-tablet {
   @media (min-width: $bp-tablet) {
     @content;
@@ -24,45 +16,41 @@
   }
 }
 
-@mixin button-base {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-xs;
-  padding: 0.85rem 1.6rem;
-  border-radius: $radius-sm;
-  font-family: $font-mono;
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1px solid transparent;
-  cursor: pointer;
-  position: relative;
+// Solo celular (por debajo de tablet)
+@mixin respond-mobile {
+  @media (max-width: #{$bp-tablet - 1px}) {
+    @content;
+  }
+}
+
+// Ícono dentro de un cuadrado redondeado azul claro (categorías, confianza, envíos...)
+@mixin icono-suave($tamano: 48px, $icono: 24px, $radio: 12px) {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: $tamano;
+  height: $tamano;
+  border-radius: $radio;
+  background: var(--brand-soft);
+  color: var(--brand);
+
+  svg {
+    width: $icono;
+    height: $icono;
+  }
+}
+
+// Oculta visualmente pero deja el texto para lectores de pantalla
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-    transition: left 0.5s ease;
-  }
-
-  &:hover::after {
-    left: 100%;
-  }
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-
-  &:active {
-    transform: translateY(0) scale(0.97);
-  }
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 // =====================================================
@@ -71,15 +59,18 @@
 
 %container {
   width: 100%;
-  max-width: 1200px;
+  max-width: $container;
   margin-inline: auto;
-  padding-inline: $space-sm;
+  padding-inline: $gutter;
 }
 
 %eyebrow {
-  font-family: $font-mono;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  display: inline-block;
+  font-family: $font-body;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $acento;
+  color: var(--brand);
 }

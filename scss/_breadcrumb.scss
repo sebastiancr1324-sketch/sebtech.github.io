@@ -9,31 +9,27 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: $space-xs;
-  font-family: $font-mono;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #666;
-  margin-bottom: 1.5rem;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: var(--muted);
 
   a {
-    color: $acento;
+    color: var(--brand);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease;
 
     &:hover {
-      border-color: $acento;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
   }
 
   &__sep {
-    opacity: 0.5;
+    color: var(--muted);
+    opacity: 0.6;
   }
 
   &__current {
-    color: $texto1;
+    color: var(--ink-2);
     font-weight: 500;
   }
 }

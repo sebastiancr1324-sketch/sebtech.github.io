@@ -2,88 +2,75 @@
 @use 'mixins' as *;
 
 // =====================================================
-// PAGINA NOSOTROS
+// PÁGINA NOSOTROS
 // =====================================================
 
 .nosotros {
   @extend %container;
-  padding-block: $space-md;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: $space-lg;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $space-3 $space-7;
+  padding-block: $space-6 $section-y;
 
   @include respond-desktop {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   &__text {
-    color: $texto2;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--ink-2);
 
-    p {
-      margin-bottom: $space-sm;
+    p + p {
+      margin-top: $space-3;
+    }
+
+    strong {
+      color: var(--ink);
     }
   }
 
-  &__title {
-    color: $texto1;
-    margin-bottom: $space-sm;
+  // Bloque destacado con la misión
+  &__text--destacado {
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    align-self: start;
   }
 }
 
 .valores {
-  @extend %container;
-  padding-block: $space-md;
+  padding-block: $section-y;
+  background: var(--surface);
 
-  &__title {
-    color: $texto1;
-    margin-bottom: $space-md;
-    text-align: center;
+  &__inner {
+    @extend %container;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: $space-md;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-3;
 
     @include respond-tablet {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: $space-4;
     }
   }
 }
 
+// El borde, el fondo y el hover se comparten con .envios-card (_envios.scss)
 .card-valor {
-  background: $cartas;
-  border: 1px solid $bordes;
-  border-radius: $radius-md;
-  padding: $space-md;
-  text-align: center;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    border-color: $brillo;
-  }
-
   &__icon {
-    color: $brillo;
-    margin-bottom: $space-sm;
-
-    svg {
-      width: 32px;
-      height: 32px;
-      margin-inline: auto;
-    }
+    @include icono-suave(48px, 24px, 12px);
+    margin-bottom: $space-4;
   }
 
   &__title {
-    font-family: $font-display;
-    color: $tcuadros1;
-    margin-bottom: $space-xs;
+    margin-bottom: 6px;
   }
 
   &__text {
-    color: $tcuadros2;
-    font-size: 0.9rem;
+    color: var(--muted);
   }
 }

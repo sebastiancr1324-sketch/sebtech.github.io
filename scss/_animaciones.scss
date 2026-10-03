@@ -2,15 +2,26 @@
 @use 'mixins' as *;
 
 // =====================================================
-// ANIMACIONES — ajustes de animaciones de scroll (AOS)
+// ANIMACIONES — ajustes de AOS (aparición al hacer scroll)
+// Solo fade-up, sutil y una sola vez (js/aos-config.js). Se anima cada
+// grilla entera y no cada tarjeta: así el translate de AOS no pisa el
+// efecto hover de las tarjetas.
 // =====================================================
 
-// Los efectos principales (fade-up, zoom-in, etc.) los provee
-// la librería AOS vía su hoja de estilos (aos.css).
-// Acá dejamos espacio para personalizar y afinarlos desde SASS.
+// Recorrido corto: que acompañe, no que distraiga. El selector va doble
+// para ganarle a aos.css, que se carga después de este archivo.
+[data-aos='fade-up'][data-aos='fade-up'] {
+  transform: translate3d(0, 16px, 0);
+}
 
-// Ajuste fino si alguna animación necesita retoque visual
-// Por ejemplo, dar un poco más de recorrido vertical al fade-up:
-// [data-aos='fade-up'] {
-//   transform: translate3d(0, 28px, 0);
-// }
+[data-aos='fade-up'][data-aos='fade-up'].aos-animate {
+  transform: translate3d(0, 0, 0);
+}
+
+// Sin animaciones si la persona pidió reducir movimiento
+@media (prefers-reduced-motion: reduce) {
+  [data-aos][data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

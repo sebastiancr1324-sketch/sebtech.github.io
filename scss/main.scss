@@ -5,12 +5,17 @@
 // =====================================================
 
 @use 'fuentes';
+@use 'tokens';
 @use 'base';
 @use 'header';
 @use 'breadcrumb';
+@use 'pagina-header';
 @use 'hero';
-@use 'categorias';
+@use 'confianza';
+@use 'card-producto';
 @use 'destacados';
+@use 'categorias';
+@use 'cta';
 @use 'footer';
 @use 'productos';
 @use 'producto';

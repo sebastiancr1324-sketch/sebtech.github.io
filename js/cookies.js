@@ -4,6 +4,8 @@
 // en localStorage que el visitante ya lo vio.
 // El banner arranca con el atributo hidden, así no se ve, no deja sombra
 // y no recibe el foco hasta que se muestra.
+// Mientras se ve, <html> lleva la clase hay-aviso-cookies y la variable
+// --alto-aviso: en celular el botón flotante de WhatsApp sube para no taparlo.
 // =====================================================
 document.addEventListener('DOMContentLoaded', function() {
   const CLAVE = 'sebtech_cookies_aceptadas';
@@ -16,8 +18,16 @@ document.addEventListener('DOMContentLoaded', function() {
   try { yaVisto = localStorage.getItem(CLAVE); } catch (e) {}
   if (yaVisto !== null) return;
 
+  var raiz = document.documentElement;
+
+  function medir() {
+    raiz.style.setProperty('--alto-aviso', banner.offsetHeight + 'px');
+  }
+
   function ocultar() {
     banner.classList.remove('is-visible');
+    raiz.classList.remove('hay-aviso-cookies');
+    window.removeEventListener('resize', medir);
     setTimeout(function() {
       banner.hidden = true;
     }, 350);
@@ -26,8 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Mostrar el banner luego de un pequeño delay
   setTimeout(function() {
     banner.hidden = false;
+    medir();
     banner.getBoundingClientRect(); // fuerza el layout para que corra la transición
     banner.classList.add('is-visible');
+    raiz.classList.add('hay-aviso-cookies');
+    window.addEventListener('resize', medir);
   }, 800);
 
   var btnEntendido = banner.querySelector('[data-cookie="entendido"]');

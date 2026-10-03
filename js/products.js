@@ -208,6 +208,42 @@ function formatearPrecio(precio) {
   return "$" + precio.toLocaleString("es-AR");
 }
 
+function escaparHtml(texto) {
+  return String(texto).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// Nombre de cada categoría: en plural para los filtros del catálogo y en
+// singular para la línea chica de las tarjetas
+var CATEGORIAS = {
+  celulares: { plural: "Celulares", singular: "Celular" },
+  tablets: { plural: "Tablets", singular: "Tablet" },
+  auriculares: { plural: "Auriculares", singular: "Auriculares" },
+  accesorios: { plural: "Accesorios", singular: "Accesorio" }
+};
+
+// Tarjeta de producto: la misma en la portada, el catálogo y los
+// relacionados. "prefijo" es la ruta hasta la carpeta pages/
+// ("pages/" desde la portada, "" desde las páginas que están en pages/).
+function tarjetaProducto(producto, prefijo) {
+  var sinStock = estaSinStock(producto);
+  var etiqueta = sinStock ? "Próximamente" : producto.etiqueta;
+  var categoria = CATEGORIAS[producto.categoria] ? CATEGORIAS[producto.categoria].singular : producto.categoria;
+  return '<a href="' + (prefijo || "") + "producto-" + producto.id + '.html" class="card-producto' + (sinStock ? " card-producto--sin-stock" : "") + '">' +
+    '<div class="card-producto__media">' +
+      (etiqueta ? '<span class="card-producto__badge">' + escaparHtml(etiqueta) + "</span>" : "") +
+      '<img src="' + obtenerImagenPrincipal(producto) + '" alt="" loading="lazy" decoding="async">' +
+    "</div>" +
+    '<div class="card-producto__body">' +
+      '<p class="card-producto__categoria">' + escaparHtml(categoria) + "</p>" +
+      '<h3 class="card-producto__title">' + escaparHtml(producto.nombre) + "</h3>" +
+      '<div class="card-producto__footer">' +
+        '<span class="card-producto__price">' + formatearPrecio(producto.precio) + "</span>" +
+        '<span class="card-producto__flecha" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>' +
+      "</div>" +
+    "</div>" +
+  "</a>";
+}
+
 /*
 ============================================
   PLANTILLA PARA AGREGAR UN PRODUCTO NUEVO
@@ -237,8 +273,15 @@ NOTAS:
            el producto pasa automáticamente a "Próximamente" (sin stock)
 - "imagenes": array con las imágenes del producto. La primera (la que
               termina en "1") se usa para la card; el resto completa la
-              galería de la página del producto.
+              galería de la página del producto. Conviene que tengan fondo
+              transparente, como las que ya están.
 - "especificaciones": lista de características destacadas
+- "etiqueta" (opcional): texto corto que aparece arriba de la foto en la
+              tarjeta, por ejemplo etiqueta: "Nuevo" o etiqueta: "Más vendido".
+              Los productos sin stock muestran "Próximamente" solos.
+
+ORDEN: los productos se muestran en el orden de este array. Los primeros
+4 que tienen stock son los "Destacados" de la portada.
 
 DESPUÉS DE AGREGAR, CAMBIAR O BORRAR UN PRODUCTO:
 - Ejecutá `npm run build` en la carpeta del proyecto. Eso crea o actualiza

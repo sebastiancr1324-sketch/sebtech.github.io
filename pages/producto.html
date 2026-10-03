@@ -10,7 +10,16 @@
   <meta property="og:title" content="Producto | SebTech">
   <meta property="og:description" content="Detalle del producto en SebTech">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="../img/apple-touch-icon.png">
+  <meta property="og:url" content="https://sebastiancr1324-sketch.github.io/sebtech.github.io/pages/producto.html">
+  <meta property="og:image" content="https://sebastiancr1324-sketch.github.io/sebtech.github.io/img/og-sebtech.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SebTech: celulares, tablets y accesorios con envíos a todo CABA">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="SebTech">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://sebastiancr1324-sketch.github.io/sebtech.github.io/pages/producto.html">
+  <meta name="theme-color" content="#0b3d9b">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/vendor/aos.css">
   <noscript><style>[data-requiere-js] { display: none; }</style></noscript>
@@ -93,6 +102,49 @@
   <script src="../js/main.js"></script>
   <script src="../js/cookies.js"></script>
   <script>
+    // Título, descripción, canonical y datos estructurados del producto.
+    // Google ejecuta JavaScript y los toma; WhatsApp y las redes no lo
+    // ejecutan, así que al compartir se ve la vista previa general del sitio.
+    function actualizarMetadatos(producto) {
+      var urlProducto = location.origin + location.pathname + '?id=' + encodeURIComponent(producto.id);
+      var descripcion = producto.descripcion.length > 155 ? producto.descripcion.slice(0, 152).replace(/\s+\S*$/, '') + '...' : producto.descripcion;
+      var fijar = function(selector, valor) {
+        var el = document.querySelector(selector);
+        if (el) el.setAttribute(el.tagName === 'LINK' ? 'href' : 'content', valor);
+      };
+      fijar('meta[name="description"]', descripcion);
+      fijar('meta[property="og:title"]', document.title);
+      fijar('meta[property="og:description"]', descripcion);
+      fijar('meta[property="og:url"]', urlProducto);
+      fijar('link[rel="canonical"]', urlProducto);
+
+      var imagenes = (producto.imagenes || [producto.imagen]).filter(Boolean).map(function(img) {
+        return new URL(rutaImg(img), location.href).href;
+      });
+      var datos = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: producto.nombre,
+        description: producto.descripcion,
+        image: imagenes,
+        category: producto.categoria,
+        url: urlProducto
+      };
+      if (producto.precio !== null) {
+        datos.offers = {
+          '@type': 'Offer',
+          price: producto.precio,
+          priceCurrency: 'ARS',
+          availability: estaSinStock(producto) ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+          url: urlProducto
+        };
+      }
+      var script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(datos);
+      document.head.appendChild(script);
+    }
+
     // Se ejecuta apenas se lee (el contenedor ya existe más arriba), sin esperar
     // a DOMContentLoaded, para que el producto aparezca en el primer pintado.
     (function() {
@@ -103,6 +155,10 @@
       var producto = id ? obtenerProductoPorId(id) : null;
 
       if (!producto) {
+        var noIndexar = document.createElement('meta');
+        noIndexar.name = 'robots';
+        noIndexar.content = 'noindex';
+        document.head.appendChild(noIndexar);
         contenedor.innerHTML =
           '<div class="producto-detail__notfound">' +
             '<p class="producto-detail__notfound-code">404</p>' +
@@ -116,6 +172,7 @@
       }
 
       document.title = producto.nombre + ' | SebTech';
+      actualizarMetadatos(producto);
 
       var specsHtml = '';
       if (producto.especificaciones && producto.especificaciones.length > 0) {

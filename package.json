@@ -1,9 +1,11 @@
 {
   "name": "sebtech",
   "private": true,
-  "description": "Sitio de SebTech. El CSS se compila desde scss/ y se publica ya compilado en css/main.css.",
+  "description": "Sitio de SebTech. `npm run build` compila scss/ a css/main.css y genera las partes compartidas de las páginas desde partials/.",
   "scripts": {
-    "build": "sass --no-source-map scss/main.scss css/main.css",
+    "build": "npm run build:css && npm run build:paginas",
+    "build:css": "sass --no-source-map scss/main.scss css/main.css",
+    "build:paginas": "node scripts/generar-paginas.js",
     "watch": "sass --no-source-map --watch scss/main.scss css/main.css"
   },
   "devDependencies": {

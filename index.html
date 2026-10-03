@@ -61,6 +61,7 @@
 </head>
 <body>
 
+  <!-- parte:header (se genera desde partials/header.html con npm run build) -->
   <header class="header">
     <div class="header__inner">
       <a href="index.html" class="header__logo"><img src="img/LogoSebtechMinimalita.webp" alt="Logo SebTech" class="header__logo-img" width="32" height="32"><span>Seb<span class="header__logo-accent">Tech</span></span></a>
@@ -78,6 +79,7 @@
       </nav>
     </div>
   </header>
+  <!-- /parte:header -->
 
   <main>
     <section class="hero">
@@ -145,6 +147,7 @@
     </section>
   </main>
 
+  <!-- parte:footer (se genera desde partials/footer.html con npm run build) -->
   <footer class="footer">
     <div class="footer__inner">
       <div>
@@ -175,7 +178,9 @@
     </div>
     <p class="footer__legal">© <span data-anio-actual>2026</span> SebTech. Todos los derechos reservados. · <a href="pages/privacy.html">Privacidad</a> · <a href="pages/terms.html">Términos</a> · <a href="pages/cookies.html">Cookies</a></p>
   </footer>
+  <!-- /parte:footer -->
 
+  <!-- parte:aviso-cookies (se genera desde partials/aviso-cookies.html con npm run build) -->
   <section class="cookie-banner" id="cookie-banner" aria-label="Aviso sobre cookies" hidden>
     <div class="cookie-banner__inner">
       <p class="cookie-banner__text">Este sitio no usa cookies de seguimiento ni de publicidad. Solo recordamos en tu navegador que ya viste este aviso. Más información en nuestra <a href="pages/cookies.html">Política de Cookies</a> y <a href="pages/privacy.html">Política de Privacidad</a>.</p>
@@ -184,6 +189,7 @@
       </div>
     </div>
   </section>
+  <!-- /parte:aviso-cookies -->
 
   <script src="js/particles.min.js"></script>
   <script src="js/products.js"></script>

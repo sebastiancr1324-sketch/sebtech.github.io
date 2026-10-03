@@ -102,6 +102,11 @@
   <script src="../js/main.js"></script>
   <script src="../js/cookies.js"></script>
   <script>
+    // Número de WhatsApp para los botones de consulta de cada producto. Los
+    // links cortos wa.me/message/... ignoran ?text=, por eso acá se usa el
+    // número: así el mensaje llega con el nombre del producto.
+    var WHATSAPP_NUMERO = '5491172389052';
+
     // Título, descripción, canonical y datos estructurados del producto.
     // Google ejecuta JavaScript y los toma; WhatsApp y las redes no lo
     // ejecutan, así que al compartir se ve la vista previa general del sitio.
@@ -209,7 +214,7 @@
 
       var accionesHtml =
         '<div class="producto-detail__actions">' +
-          '<a href="https://wa.me/message/NDPQOF3UHLIQF1?text=' + encodeURIComponent((esSinStock ?
+          '<a href="https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent((esSinStock ?
             'Hola! Quiero consultar cuándo va a estar disponible el ' + producto.nombre :
             'Hola! Quiero consultar por el ' + producto.nombre)) + '" class="btn btn--primary" target="_blank" rel="noopener noreferrer">' +
           (esSinStock ? 'Preguntar por disponibilidad' : 'Consultar por WhatsApp') +

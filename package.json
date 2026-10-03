@@ -9,6 +9,7 @@
     "watch": "sass --no-source-map --watch scss/main.scss css/main.css"
   },
   "devDependencies": {
-    "sass": "^1.93.0"
+    "sass": "^1.93.0",
+    "sharp": "^0.34.5"
   }
 }

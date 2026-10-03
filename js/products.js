@@ -240,5 +240,12 @@ NOTAS:
               galería de la página del producto.
 - "especificaciones": lista de características destacadas
 
+DESPUÉS DE AGREGAR, CAMBIAR O BORRAR UN PRODUCTO:
+- Ejecutá `npm run build` en la carpeta del proyecto. Eso crea o actualiza
+  la página del producto (pages/producto-<id>.html), su imagen para
+  compartir en WhatsApp y redes (img/og/<id>.jpg) y el sitemap.xml.
+- Si te olvidás, el producto igual se ve en el sitio (se abre la ficha
+  dinámica), pero al compartir el link no aparece su foto.
+
 ============================================
 */

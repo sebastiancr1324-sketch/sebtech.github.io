@@ -145,7 +145,7 @@
 
         for (var p = 0; p < productosCat.length; p++) {
           var prod = productosCat[p];
-          html += '<a href="producto.html?id=' + prod.id + '" class="card-producto">';
+          html += '<a href="producto-' + prod.id + '.html" class="card-producto">';
           html += '<div class="card-producto__media">';
           html += '<img src="' + obtenerImagenPrincipal(prod) + '" alt="' + prod.nombre + '" loading="lazy" decoding="async">';
           html += '</div>';
@@ -171,7 +171,7 @@
 
         for (var p = 0; p < productosSinStock.length; p++) {
           var prod = productosSinStock[p];
-          html += '<a href="producto.html?id=' + prod.id + '" class="card-producto sin-stock">';
+          html += '<a href="producto-' + prod.id + '.html" class="card-producto sin-stock">';
           html += '<div class="card-producto__media">';
           html += '<img src="' + obtenerImagenPrincipal(prod) + '" alt="' + prod.nombre + '" loading="lazy" decoding="async">';
           html += '</div>';

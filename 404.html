@@ -6,6 +6,14 @@
   <title>Página no encontrada | SebTech</title>
   <meta name="description" content="La página que buscás no existe o fue movida. Volvé al inicio de SebTech.">
   <meta name="robots" content="noindex">
+  <script>
+    // Si se agregó un producto y todavía no se corrió `npm run build`, su
+    // página fija no existe: se redirige a la ficha dinámica del producto.
+    (function() {
+      var m = location.pathname.match(/\/pages\/producto-([a-z0-9-]+)\.html$/);
+      if (m) location.replace('/sebtech.github.io/pages/producto.html?id=' + m[1]);
+    })();
+  </script>
   <meta name="theme-color" content="#0b3d9b">
   <!-- GitHub Pages sirve este archivo en cualquier ruta que no exista (incluso
        dentro de /pages/...), por eso todas las rutas son absolutas. -->

@@ -296,7 +296,7 @@
             '<img src="' + img + '" alt="' + p.nombre + '" class="carrusel__img" loading="lazy" decoding="async">' +
             '<h3 class="carrusel__nombre">' + p.nombre + '</h3>' +
             '<span class="carrusel__precio">' + formatearPrecio(p.precio) + '</span>' +
-            '<a href="pages/producto.html?id=' + p.id + '" class="btn btn--primary carrusel__cta">Ver producto</a>' +
+            '<a href="pages/producto-' + p.id + '.html" class="btn btn--primary carrusel__cta">Ver producto</a>' +
           '</div>';
         dotsHtml += '<button type="button" class="carrusel__dot" data-idx="' + i + '" aria-label="Mostrar producto ' + (i+1) + '"></button>';
       }

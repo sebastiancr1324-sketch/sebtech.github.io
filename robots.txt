@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Nota: los buscadores solo leen robots.txt en la raíz del dominio
-# (sebastiancr1324-sketch.github.io/robots.txt). Mientras el sitio esté en
+# (sebbasv.github.io/robots.txt). Mientras el sitio esté en
 # la subcarpeta /sebtech.github.io/, este archivo se ignora; el sitemap se
 # puede enviar a mano desde Google Search Console.
-Sitemap: https://sebastiancr1324-sketch.github.io/sebtech.github.io/sitemap.xml
+Sitemap: https://sebbasv.github.io/sebtech.github.io/sitemap.xml

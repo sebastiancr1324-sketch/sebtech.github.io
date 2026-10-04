@@ -11,20 +11,20 @@
   <meta property="og:title" content="Samsung Galaxy Tab A9 | SebTech">
   <meta property="og:description" content="Consultar precio · Tablet Samsung Galaxy Tab A9, ideal para estudio y entretenimiento. Pantalla grande y liviana, perfecta para ver contenido, navegar...">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sebastiancr1324-sketch.github.io/sebtech.github.io/pages/producto-galaxy-tab-a9.html">
-  <meta property="og:image" content="https://sebastiancr1324-sketch.github.io/sebtech.github.io/img/og/galaxy-tab-a9.jpg">
+  <meta property="og:url" content="https://sebbasv.github.io/sebtech.github.io/pages/producto-galaxy-tab-a9.html">
+  <meta property="og:image" content="https://sebbasv.github.io/sebtech.github.io/img/og/galaxy-tab-a9.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Samsung Galaxy Tab A9 en SebTech">
   <meta property="og:locale" content="es_AR">
   <meta property="og:site_name" content="SebTech">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://sebastiancr1324-sketch.github.io/sebtech.github.io/pages/producto-galaxy-tab-a9.html">
+  <link rel="canonical" href="https://sebbasv.github.io/sebtech.github.io/pages/producto-galaxy-tab-a9.html">
   <meta name="theme-color" content="#0b3d9b">
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/main.css?v=17c115bf">
   <link rel="stylesheet" href="../css/vendor/aos.css">
   <noscript><style>[data-requiere-js] { display: none; }</style></noscript>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Samsung Galaxy Tab A9","description":"Tablet Samsung Galaxy Tab A9, ideal para estudio y entretenimiento. Pantalla grande y liviana, perfecta para ver contenido, navegar y estudiar.","image":["https://sebastiancr1324-sketch.github.io/sebtech.github.io/img/GalaxyTabA9.webp"],"category":"tablets","url":"https://sebastiancr1324-sketch.github.io/sebtech.github.io/pages/producto-galaxy-tab-a9.html"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Samsung Galaxy Tab A9","description":"Tablet Samsung Galaxy Tab A9, ideal para estudio y entretenimiento. Pantalla grande y liviana, perfecta para ver contenido, navegar y estudiar.","image":["https://sebbasv.github.io/sebtech.github.io/img/GalaxyTabA9.webp"],"category":"tablets","url":"https://sebbasv.github.io/sebtech.github.io/pages/producto-galaxy-tab-a9.html"}</script>
 </head>
 <body>
 
@@ -262,8 +262,8 @@
       if (images.length > 1) {
         thumbsHtml = '<div class="producto-detail__thumbs">';
         for (var t = 0; t < images.length; t++) {
-          thumbsHtml += '<button type="button" class="producto-detail__thumb" data-img="' + images[t] + '" aria-label="Ver imagen ' + (t+1) + '">' +
-            '<img src="' + images[t] + '" alt="' + producto.nombre + ' imagen ' + (t+1) + '">' +
+          thumbsHtml += '<button type="button" class="producto-detail__thumb" data-img="' + images[t] + '" aria-label="Ver imagen ' + (t+1) + '" aria-pressed="false">' +
+            '<img src="' + images[t] + '" alt="" loading="lazy" decoding="async">' +
           '</button>';
         }
         thumbsHtml += '</div>';
@@ -315,7 +315,9 @@
         '</nav>' +
         '<div class="producto-detail__grid">' +
           '<div class="producto-detail__gallery">' +
-            '<img src="' + imgPrincipal + '" alt="' + producto.nombre + '" class="producto-detail__img" id="producto-img-principal" fetchpriority="high">' +
+            '<div class="producto-detail__media">' +
+              '<img src="' + imgPrincipal + '" alt="' + producto.nombre + '" class="producto-detail__img" id="producto-img-principal" fetchpriority="high">' +
+            '</div>' +
             thumbsHtml +
           '</div>' +
           '<div class="producto-detail__info">' +
@@ -347,14 +349,19 @@
           btn.addEventListener('click', function() {
             imgPrincipalEl.src = btn.getAttribute('data-img');
             var activos = document.querySelectorAll('.producto-detail__thumb.is-active');
-            for (var a = 0; a < activos.length; a++) { activos[a].classList.remove('is-active'); }
+            for (var a = 0; a < activos.length; a++) {
+              activos[a].classList.remove('is-active');
+              activos[a].setAttribute('aria-pressed', 'false');
+            }
             btn.classList.add('is-active');
+            btn.setAttribute('aria-pressed', 'true');
           });
         })(thumbs[th]);
       }
 
       if (thumbs.length > 0) {
         thumbs[0].classList.add('is-active');
+        thumbs[0].setAttribute('aria-pressed', 'true');
       }
 
       var urlCompleta = urlFicha(producto.id);

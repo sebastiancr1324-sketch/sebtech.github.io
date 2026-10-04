@@ -15,6 +15,9 @@
 //   {{raiz}}      prefijo hasta la raíz del sitio (para img/, css/, js/)
 //   {{paginas}}   prefijo hasta la carpeta pages/
 //   {{actual:x}}  aria-current="page" si la página pertenece a la sección x
+//
+// También agrega al link de css/main.css una versión (?v=...) que cambia
+// con cada cambio del CSS. Por eso `npm run build` compila el CSS primero.
 // =====================================================
 
 const fs = require('fs');
@@ -22,7 +25,7 @@ const path = require('path');
 
 const RAIZ = path.join(__dirname, '..');
 const RUTA_SITIO = '/sebtech.github.io/';
-const URL_SITIO = 'https://sebastiancr1324-sketch.github.io/sebtech.github.io/';
+const URL_SITIO = 'https://sebbasv.github.io/sebtech.github.io/';
 
 const PARTES = ['header', 'footer', 'aviso-cookies'];
 
@@ -80,7 +83,18 @@ function insertarPartes(rel) {
     }
     html = html.replace(patron, (m, abre, cierra) => abre + renderizarParte(plantilla, rel).replace(/\r?\n$/, '') + cierra);
   }
+  // main.css?v=<huella>: cuando el CSS cambia, cambia el link y el navegador
+  // baja el archivo nuevo en lugar de usar el que tenía guardado
+  html = html.replace(/(css\/main\.css)(\?v=[0-9a-f]+)?"/g, (m, css) => `${css}?v=${versionCss()}"`);
   escribir(rel, html);
+}
+
+let huellaCss;
+function versionCss() {
+  if (!huellaCss) {
+    huellaCss = require('crypto').createHash('sha1').update(leer('css/main.css')).digest('hex').slice(0, 8);
+  }
+  return huellaCss;
 }
 
 function paginasDelSitio() {

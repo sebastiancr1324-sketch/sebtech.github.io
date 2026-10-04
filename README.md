@@ -2,7 +2,7 @@
 
 Sitio de SebTech: celulares, tablets y accesorios con envíos a todo CABA.
 Es un sitio estático publicado con GitHub Pages en
-https://sebastiancr1324-sketch.github.io/sebtech.github.io/
+https://sebbasv.github.io/sebtech.github.io/
 
 ## Estructura
 
